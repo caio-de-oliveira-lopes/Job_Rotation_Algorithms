@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Costa_and_Miralles_2009": {
+      "commandName": "Project",
+      "commandLineArgs": "\"C:\\Projetos\\Job_Rotation_Algorithms\\Instances\\alwabp\" \"C:\\Projetos\\Job_Rotation_Algorithms\\Outputs\" 2 4 7"
+    }
+  }
+}
