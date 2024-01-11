@@ -26,7 +26,7 @@ namespace Base.Domain
 
         protected abstract void CompileSolution();
 
-        public abstract void WriteSolution(Output output)
+        public abstract void WriteSolution(Output output);
 
         protected void BuildModel()
         {
