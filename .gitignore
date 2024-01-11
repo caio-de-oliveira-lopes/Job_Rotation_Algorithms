@@ -10,3 +10,4 @@ obj
 *.bin
 *.suo
 *.config
+*csproj
