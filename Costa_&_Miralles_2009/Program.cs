@@ -14,6 +14,7 @@ namespace Costa___Miralles_2009
             formattedDateTime = formattedDateTime.Replace(" ", "_");
 
             Logger logger = new(Directory.GetCurrentDirectory(), $"log_{formattedDateTime}", ".txt");
+            //Logger logger = new(Directory.GetCurrentDirectory(), $"log", ".txt");
 
             try
             {
@@ -77,12 +78,14 @@ namespace Costa___Miralles_2009
                             }
                         }
                         logger.AddLog($"Finished.");
+                        logger.Write();
                     }
                     catch (Exception ex)
                     {
                         logger.AddLog(ex);
                     }
                 }
+                logger.Write();
             }
             catch (GRBException ex)
             {
