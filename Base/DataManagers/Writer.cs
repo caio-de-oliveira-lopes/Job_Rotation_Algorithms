@@ -26,10 +26,6 @@ namespace Base.DataManagers
             {
                 Console.WriteLine("Exception: " + e.Message);
             }
-            finally
-            {
-                Console.WriteLine("Finished Writing Logs.");
-            }
         }
     }
 }

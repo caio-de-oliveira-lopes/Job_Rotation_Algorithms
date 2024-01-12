@@ -1,32 +1,79 @@
 ﻿using Base.Domain;
 using Gurobi;
+using System.Reflection;
+using System.Xml.Linq;
 
 namespace Costa_and_Miralles_2009
 {
     public class CostaMirallesModel : Model
     {
+        public Dictionary<(int, int, int, int), GRBVar> XVariables { get; private set; }
+        public Dictionary<(int, int, int), GRBVar> YVariables { get; private set; }
+        public Dictionary<(int, int), GRBVar> ZVariables { get; private set; }
+
         public CostaMirallesModel(GRBEnv env, int numberOfPeriods, Input instance) : base(env, numberOfPeriods, instance)
         {
+            XVariables = new();
+            YVariables = new();
+            ZVariables = new();
             BuildModel();
         }
 
         protected override void CreateVariables()
         {
-            /*
-            GRBModel model = new(env);
-            // Add Variables
-            GRBVar x = model.AddVar(0d, 1d, 0d, GRB.BINARY, "x");
-            GRBVar y = model.AddVar(0d, 1d, 0d, GRB.BINARY, "y");
-            GRBVar z = model.AddVar(0d, 1d, 0d, GRB.BINARY, "z");
+            CreateXVariables();
+            CreateYVariables();
+            CreateZVariables();
+        }
 
+        private void CreateXVariables()
+        {
+            foreach (int station in Enumerable.Range(0, Instance.Workers))
+            {
+                foreach (int worker in Enumerable.Range(0, Instance.Workers))
+                {
+                    foreach (int task in Enumerable.Range(0, Instance.NumberOfTasks))
+                    {
+                        foreach (int period in Enumerable.Range(0, NumberOfPeriods))
+                        {
+                            XVariables.Add((station, worker, task, period), AddVar(0d, 1d, 0d, GRB.BINARY, $"x({station}, {worker}, {task}, {period})"));
+                        }
+                    }
+                }
+            }
+        }
+
+        private void CreateYVariables()
+        {
+            foreach (int station in Enumerable.Range(0, Instance.Workers))
+            {
+                foreach (int worker in Enumerable.Range(0, Instance.Workers))
+                {
+                    foreach (int period in Enumerable.Range(0, NumberOfPeriods))
+                    {
+                        YVariables.Add((station, worker, period), AddVar(0d, 1d, 0d, GRB.BINARY, $"y({station}, {worker}, {period})"));
+                    }
+                }
+            }
+        }
+
+        private void CreateZVariables()
+        {
+            foreach (int worker in Enumerable.Range(0, Instance.Workers))
+            {
+                foreach (int task in Enumerable.Range(0, Instance.NumberOfTasks))
+                {
+                    ZVariables.Add((worker, task), AddVar(0d, 1d, 1d, GRB.BINARY, $"z({worker}, {task})"));
+                }
+            }            
+        }
+
+        protected override void CreateConstraints()
+        {
+
+            /*
             // Add Constraints
             GRBConstr constraint = model.AddConstr(x + 2 * y + 3 * z <= 4.0, "c0");
-
-            /*
-            * Once the model has been built, the typical next step is to optimize it (using GRBoptimize in C, model.optimize in C++, 
-            * Java, and Python, or model.Optimize in C#). You can then query the X attribute on the variables to retrieve the solution 
-            * (and the VarName attribute to retrieve the variable name for each variable). In C, the X attribute is retrieved as follows
-
 
             model.Optimize();
 
@@ -36,14 +83,9 @@ namespace Costa_and_Miralles_2009
             */
         }
 
-        protected override void CreateConstraints()
-        {
-
-        }
-
         public override void Run()
         {
-
+            //Optimize();
         }
 
         protected override void CompileSolution()

@@ -8,7 +8,6 @@ namespace Costa_and_Miralles_2009
     {
         private static void Main(string[] args)
         {
-            Logger logger = new();
             try
             {
                 if (args.Length < 3)
@@ -27,6 +26,16 @@ namespace Costa_and_Miralles_2009
                 if (!Directory.Exists(outputFileDirectory))
                     Directory.CreateDirectory(outputFileDirectory);
 
+                string myLogDirectory = Path.Join(outputFileDirectory, @"\ExecutionLogs\");
+                if (!Directory.Exists(myLogDirectory))
+                    Directory.CreateDirectory(myLogDirectory);
+
+                Logger logger = new(myLogDirectory);
+
+                string gurobiLogDirectory = Path.Join(outputFileDirectory, @"\GurobiLogs\");
+                if (!Directory.Exists(gurobiLogDirectory))
+                    Directory.CreateDirectory(gurobiLogDirectory);
+
                 List<int> periods = new();
                 foreach (string numberOfPeriods in args[2..])
                     periods.Add(int.Parse(numberOfPeriods));
@@ -41,6 +50,7 @@ namespace Costa_and_Miralles_2009
                     inputFilesPaths.Add(inputFileDirectory);
 
                 GRBEnv env = new();
+
                 foreach (string inputFilePath in inputFilesPaths)
                 {
                     try
@@ -52,13 +62,12 @@ namespace Costa_and_Miralles_2009
                             logger.AddLog($"Running with {numberOfPeriods} periods.");
                             try
                             {
-                                Output output = new(outputFileDirectory, instance.FileName);
-
+                                Output output = new(outputFileDirectory, instance.FileName, nameof(Model.ModelType.CostaMirallesModel), numberOfPeriods);
                                 if (File.Exists(output.GetFullPath()))
                                 {
                                     throw new Exception($"Output named {output.FileName} already exists. It's execution will be ignored.");
                                 }
-
+                                env.LogFile = Path.Join(gurobiLogDirectory, $"gurobi_log-{output.FileName}.log");
                                 CostaMirallesModel model = new(env, numberOfPeriods, instance);
                                 model.Run();
 
@@ -71,25 +80,17 @@ namespace Costa_and_Miralles_2009
                             }
                         }
                         logger.AddLog($"Finished.");
-                        logger.Write();
                     }
                     catch (Exception ex)
                     {
                         logger.AddLog(ex);
                     }
                 }
-                logger.Write();
-            }
-            catch (GRBException ex)
-            {
-                logger.AddLog($"Error code: {ex.ErrorCode}.{ex.Message}");
             }
             catch (Exception ex)
             {
-                logger.AddLog(ex);
+                Console.WriteLine(ex);
             }
-
-            logger.Write();
         }
     }
 }

@@ -18,6 +18,13 @@ namespace Base.Domain
             Solution = null;
         }
 
+        public enum ModelType
+        {
+            CostaMirallesModel,
+            BorbaRittModel,
+            MoreiraMirallesCostaModel
+        }
+
         protected abstract void CreateVariables();
 
         protected abstract void CreateConstraints();
