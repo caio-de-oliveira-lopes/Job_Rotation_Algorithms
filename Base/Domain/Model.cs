@@ -25,9 +25,19 @@ namespace Base.Domain
             MoreiraMirallesCostaModel
         }
 
+        public enum ConstraintController
+        {
+            None,
+            FirstConstraint,
+            SecondConstraint,
+            BothConstraints
+        }
+
         protected abstract void CreateVariables();
 
         protected abstract void CreateConstraints();
+
+        protected abstract void DefineSense();
 
         public abstract void Run();
 
@@ -39,7 +49,11 @@ namespace Base.Domain
         {
             CreateVariables();
             CreateConstraints();
+            AddExtraConstraints();
+            DefineSense();
         }
+
+        protected abstract void AddExtraConstraints();
 
         public bool HasSolution()
         {

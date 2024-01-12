@@ -50,7 +50,6 @@ namespace Costa_and_Miralles_2009
                     inputFilesPaths.Add(inputFileDirectory);
 
                 GRBEnv env = new();
-
                 foreach (string inputFilePath in inputFilesPaths)
                 {
                     try
@@ -60,23 +59,29 @@ namespace Costa_and_Miralles_2009
                         foreach (int numberOfPeriods in periods)
                         {
                             logger.AddLog($"Running with {numberOfPeriods} periods.");
-                            try
+                            foreach (Model.ConstraintController constraintController in Enum.GetValues<Model.ConstraintController>())
                             {
-                                Output output = new(outputFileDirectory, instance.FileName, nameof(Model.ModelType.CostaMirallesModel), numberOfPeriods);
-                                if (File.Exists(output.GetFullPath()))
+                                logger.AddLog($"Running with {constraintController} constraint(s).");
+                                try
                                 {
-                                    throw new Exception($"Output named {output.FileName} already exists. It's execution will be ignored.");
-                                }
-                                env.LogFile = Path.Join(gurobiLogDirectory, $"gurobi_log-{output.FileName}.log");
-                                CostaMirallesModel model = new(env, numberOfPeriods, instance);
-                                model.Run();
+                                    Output output = new(outputFileDirectory, instance.FileName, nameof(Model.ModelType.CostaMirallesModel), constraintController, numberOfPeriods);
+                                    if (File.Exists(output.GetFullPath()))
+                                    {
+                                        throw new Exception($"Output named {output.FileName} already exists. It's execution will be ignored.");
+                                    }
+                                    env.LogFile = Path.Join(gurobiLogDirectory, $"gurobi_log-{output.FileName}.log");
+                                    CostaMirallesModel model = new(env, numberOfPeriods, instance, constraintController);
+                                    model.Run();
 
-                                model.WriteSolution(output);
-                                output.Write();
-                            }
-                            catch (Exception ex)
-                            {
-                                logger.AddLog(ex);
+                                    model.WriteSolution(output);
+                                    output.Write();
+
+                                    model.Dispose();
+                                }
+                                catch (Exception ex)
+                                {
+                                    logger.AddLog(ex);
+                                }
                             }
                         }
                         logger.AddLog($"Finished.");
@@ -86,6 +91,7 @@ namespace Costa_and_Miralles_2009
                         logger.AddLog(ex);
                     }
                 }
+                env.Dispose();
             }
             catch (Exception ex)
             {

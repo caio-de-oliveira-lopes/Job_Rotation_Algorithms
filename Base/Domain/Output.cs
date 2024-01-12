@@ -7,8 +7,8 @@ namespace Base.Domain
         private static int InstanceCounter = 0;
         public int Id { get; private set; }
 
-        public Output(string fileDirectory, string fileName, string modelName, int numberOfPeriods)
-            : base(fileDirectory, $"output-{fileName}-{modelName}-{numberOfPeriods}", ".json")
+        public Output(string fileDirectory, string fileName, string modelName, Model.ConstraintController constraintController, int numberOfPeriods)
+            : base(fileDirectory, $"output-{fileName}-{modelName}-{constraintController}-{numberOfPeriods}", ".json")
         {
             Id = InstanceCounter++;
         }
