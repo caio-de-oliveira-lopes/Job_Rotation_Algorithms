@@ -2,20 +2,13 @@
 using Base.Domain;
 using Gurobi;
 
-namespace Costa___Miralles_2009
+namespace Costa_and_Miralles_2009
 {
     public class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            DateTime currentDateTime = DateTime.Now;
-            string formattedDateTime = currentDateTime.ToString("MM/dd/yyyy hh:mm:ss tt");
-            formattedDateTime = formattedDateTime.Replace("/", "-");
-            formattedDateTime = formattedDateTime.Replace(" ", "_");
-
-            Logger logger = new(Directory.GetCurrentDirectory(), $"log_{formattedDateTime}", ".txt");
-            //Logger logger = new(Directory.GetCurrentDirectory(), $"log", ".txt");
-
+            Logger logger = new();
             try
             {
                 if (args.Length < 3)

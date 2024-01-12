@@ -1,7 +1,7 @@
 ﻿using Base.Domain;
 using Gurobi;
 
-namespace Costa___Miralles_2009
+namespace Costa_and_Miralles_2009
 {
     public class CostaMirallesModel : Model
     {

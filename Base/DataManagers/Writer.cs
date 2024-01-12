@@ -1,5 +1,4 @@
 ﻿using Base.Domain;
-using System.Text;
 
 namespace Base.DataManagers
 {
@@ -14,13 +13,14 @@ namespace Base.DataManagers
         {
             try
             {
-                StreamWriter sw = new(logger.GetFullPath(), true, Encoding.UTF8);
-                var logs = logger.GetLogs();
-                foreach (string line in logs)
-                    sw.WriteLine(line);
-
-                sw.Close();
-                logger.IncrementLastWrittenLine(logs.Count());
+                string[] logs = logger.GetLogs();
+                using FileStream fileStream = File.Open(logger.GetFullPath(), FileMode.Append);
+                using (StreamWriter sw = new(fileStream))
+                {
+                    foreach (string line in logs)
+                        sw.WriteLine(line);
+                }
+                logger.IncrementLastWrittenLine(logs.Length);
             }
             catch (Exception e)
             {

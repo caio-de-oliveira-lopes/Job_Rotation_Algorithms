@@ -1,8 +1,8 @@
-﻿namespace Moreira_Miralles___Costa_2015
+﻿namespace Moreira_Miralles_and_Costa_2015
 {
     public class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             if (args.Length < 1)
             {
