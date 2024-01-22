@@ -49,6 +49,9 @@ namespace Costa_and_Miralles_2009
                 else
                     inputFilesPaths.Add(inputFileDirectory);
 
+                // Depending on execution, this list of models is the only thing expected to change
+                List<Model.ModelType> models = new() { Model.ModelType.CostaMirallesModel };
+
                 GRBEnv env = new();
                 foreach (string inputFilePath in inputFilesPaths)
                 {
@@ -59,28 +62,32 @@ namespace Costa_and_Miralles_2009
                         foreach (int numberOfPeriods in periods)
                         {
                             logger.AddLog($"Running with {numberOfPeriods} periods.");
-                            foreach (Model.ConstraintController constraintController in Enum.GetValues<Model.ConstraintController>())
+                            foreach (Model.ModelType modelType in models)
                             {
-                                logger.AddLog($"Running with {constraintController} constraint(s).");
-                                try
+                                logger.AddLog($"Running {modelType}.");
+                                foreach (Model.ConstraintController constraintController in Enum.GetValues<Model.ConstraintController>())
                                 {
-                                    Output output = new(outputFileDirectory, instance.FileName, nameof(Model.ModelType.CostaMirallesModel), constraintController, numberOfPeriods);
-                                    if (File.Exists(output.GetFullPath()))
+                                    logger.AddLog($"Running with {constraintController} constraint(s).");
+                                    try
                                     {
-                                        throw new Exception($"Output named {output.FileName} already exists. It's execution will be ignored.");
+                                        Output output = new(outputFileDirectory, instance.FileName, modelType, constraintController, numberOfPeriods);
+                                        if (File.Exists(output.GetFullPath()))
+                                        {
+                                            throw new Exception($"Output named {output.FileName} already exists. It's execution will be ignored.");
+                                        }
+                                        env.LogFile = Path.Join(gurobiLogDirectory, $"gurobi_log-{output.FileName}.log");
+                                        CostaMirallesModel model = new(env, numberOfPeriods, instance, constraintController);
+                                        model.Run();
+
+                                        model.WriteSolution(output);
+                                        output.Write();
+
+                                        model.Dispose();
                                     }
-                                    env.LogFile = Path.Join(gurobiLogDirectory, $"gurobi_log-{output.FileName}.log");
-                                    CostaMirallesModel model = new(env, numberOfPeriods, instance, constraintController);
-                                    model.Run();
-
-                                    model.WriteSolution(output);
-                                    output.Write();
-
-                                    model.Dispose();
-                                }
-                                catch (Exception ex)
-                                {
-                                    logger.AddLog(ex);
+                                    catch (Exception ex)
+                                    {
+                                        logger.AddLog(ex);
+                                    }
                                 }
                             }
                         }

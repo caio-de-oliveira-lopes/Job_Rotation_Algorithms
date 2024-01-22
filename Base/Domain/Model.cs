@@ -27,10 +27,15 @@ namespace Base.Domain
 
         public enum ConstraintController
         {
-            None,
-            FirstConstraint,
-            SecondConstraint,
-            BothConstraints
+            NoExtraConstraint,
+            FirstExtraConstraint,
+            SecondExtraConstraint,
+            BothExtraConstraints
+        }
+
+        public List<int> GetPeriodsList()
+        {
+            return Enumerable.Range(0, NumberOfPeriods).ToList();
         }
 
         protected abstract void CreateVariables();
