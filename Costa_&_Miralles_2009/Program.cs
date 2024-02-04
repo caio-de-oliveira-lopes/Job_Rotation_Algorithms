@@ -10,9 +10,9 @@ namespace Costa_and_Miralles_2009
         {
             try
             {
-                if (args.Length < 3)
+                if (args.Length < 6)
                 {
-                    throw new Exception("At least three arguments are needed: <InputOrDirectoryPath> <OutputPath> <NumberOfPeriods_1>... (more NumberOfPeriods can be added)");
+                    throw new Exception("At least four arguments are needed: <InputOrDirectoryPath> <OutputPath> -c <MaximumMeanCycleTime> -t <NumberOfPeriods_1>... (more NumberOfPeriods can be added).");
                 }
 
                 string inputFileDirectory = string.Empty;
@@ -36,9 +36,21 @@ namespace Costa_and_Miralles_2009
                 if (!Directory.Exists(gurobiLogDirectory))
                     Directory.CreateDirectory(gurobiLogDirectory);
 
+                int positionForCycleTime = args.ToList().IndexOf("-c") + 1;
+                if (!int.TryParse(args[positionForCycleTime], out int maximumMeanCycleTime))
+                {
+                    throw new Exception("Input for MaximumMeanCycleTime is missing or invalid.");
+                }
+
                 List<int> periods = new();
-                foreach (string numberOfPeriods in args[2..])
-                    periods.Add(int.Parse(numberOfPeriods));
+                int positionForPeriods = args.ToList().IndexOf("-t") + 1;
+                foreach (string numberOfPeriods in args[positionForPeriods..])
+                {
+                    if (int.TryParse(numberOfPeriods, out int result))
+                        periods.Add(result);
+                    else
+                        break;
+                }
 
                 FileAttributes attr = File.GetAttributes(inputFileDirectory);
 
@@ -52,7 +64,13 @@ namespace Costa_and_Miralles_2009
                 // Depending on execution, this list of models is the only thing expected to change
                 List<Model.ModelType> models = new() { Model.ModelType.CostaMirallesModel };
 
-                GRBEnv env = new();
+                GRBEnv env = new()
+                {
+                    TimeLimit = 3600,
+                    Threads = 1,
+                    MIPGap = 1e-3
+                };
+
                 foreach (string inputFilePath in inputFilesPaths)
                 {
                     try
@@ -76,9 +94,8 @@ namespace Costa_and_Miralles_2009
                                             throw new Exception($"Output named {output.FileName} already exists. It's execution will be ignored.");
                                         }
                                         env.LogFile = Path.Join(gurobiLogDirectory, $"gurobi_log-{output.FileName}.log");
-                                        CostaMirallesModel model = new(env, numberOfPeriods, instance, constraintController);
+                                        CostaMirallesModel model = new(env, numberOfPeriods, instance, maximumMeanCycleTime, constraintController);
                                         model.Run();
-
                                         model.WriteSolution(output);
                                         output.Write();
 

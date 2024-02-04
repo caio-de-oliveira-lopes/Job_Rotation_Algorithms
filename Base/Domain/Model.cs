@@ -8,7 +8,7 @@ namespace Base.Domain
         public int Id { get; private set; }
         public int NumberOfPeriods { get; private set; }
         public Input Instance { get; private set; }
-        public Solution? Solution { get; private set; }
+        public Solution? Solution { get; protected set; }
 
         public Model(GRBEnv env, int numberOfPeriods, Input instance) : base(env)
         {

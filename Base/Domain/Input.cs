@@ -1,4 +1,6 @@
-﻿namespace Base.Domain
+﻿using System.Threading.Tasks;
+
+namespace Base.Domain
 {
     public class Input : BaseFile
     {
@@ -76,9 +78,33 @@
             return workersWhoCanExecuteTask;
         }
 
+        public int? GetTaskTime(int task, int worker)
+        {
+            return Matrix[task, worker];
+        }
+
         public override void Write()
         {
             throw new NotImplementedException();
+        }
+
+        public List<int> GetWorkersExecutionIntersection(List<int> tasksToIntersect, List<int>? tasksToExclude = null)
+        {
+            if (!tasksToIntersect.Any())
+                return new List<int>();
+
+            List<int> result = GetWorkersWhoCanExecuteTask(tasksToIntersect[0]);
+            tasksToIntersect.RemoveAt(0);
+
+            foreach (int task in tasksToIntersect)
+                result = result.Intersect(GetWorkersWhoCanExecuteTask(task)).ToList();
+
+            if (tasksToExclude != null)
+                foreach (int task in tasksToExclude)
+                    foreach (int worker in GetWorkersWhoCanExecuteTask(task))
+                        result.Remove(worker);
+
+            return result;
         }
     }
 }
