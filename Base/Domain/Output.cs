@@ -1,4 +1,5 @@
 ﻿using Base.DataManagers;
+using Base.Utils;
 
 namespace Base.Domain
 {
@@ -6,6 +7,7 @@ namespace Base.Domain
     {
         private static int InstanceCounter = 0;
         public int Id { get; private set; }
+        public Solution? Solution { get; private set; }
 
         public Output(string fileDirectory, string fileName, Model.ModelType modelType, Model.ConstraintController constraintController, int numberOfPeriods)
             : base(fileDirectory, $"output-{fileName}-{modelType}-{constraintController}-{numberOfPeriods}", ".json")
@@ -13,9 +15,28 @@ namespace Base.Domain
             Id = InstanceCounter++;
         }
 
+        public void SetSolution(Solution solution)
+        {
+            Solution = solution;
+        }
+
         public override void Write()
         {
-            Writer.WriteOutput(this);
+            if (Solution == null) return;
+
+            Dictionary<string, object?> data = new()
+            {
+                { nameof(Solution.NumberOfTasks), Solution.NumberOfTasks },
+                { nameof(Solution.NumberOfWorkers), Solution.NumberOfWorkers },
+                { nameof(Solution.NumberOfPeriods), Solution.NumberOfPeriods },
+                { nameof(Solution.MeanCycleTime), Solution.MeanCycleTime },
+                { nameof(Solution.ExecutionTimeMs), Solution.ExecutionTimeMs },
+                { "OF", Solution.NumberOfDistinctTasksExecuted },
+                { nameof(Solution.Assignment), Solution.Assignment },
+                { nameof(Solution.NewTasksExecutedByWorkerOnEachPeriod), Solution.NewTasksExecutedByWorkerOnEachPeriod }
+            };
+
+            Writer.WriteOutput(this, data);
         }
     }
 }

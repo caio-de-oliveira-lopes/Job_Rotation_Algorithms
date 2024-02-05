@@ -1,12 +1,18 @@
 ﻿using Base.Domain;
+using System.Text.Json;
 
 namespace Base.DataManagers
 {
     public static class Writer
     {
-        public static void WriteOutput(Output output)
+        public static void WriteOutput(Output output, Dictionary<string, object?> data)
         {
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            var json = JsonSerializer.Serialize(data, options);
+            //var solutions = instance.Solutions.Values.Select(x => x.Id).ToList();
 
+            File.WriteAllText(output.GetFullPath(), json);
+            Console.WriteLine($"\nFinished Writing Output For Instance {output.FileName}.\n");
         }
 
         public static void WriteLogs(Logger logger)

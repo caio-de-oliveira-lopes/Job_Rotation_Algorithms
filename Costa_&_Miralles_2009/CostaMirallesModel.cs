@@ -327,8 +327,8 @@ namespace Costa_and_Miralles_2009
 
         protected override void CompileSolution()
         {
-            int numberOfDistinctTasksExecuted = (int)GetObjective(0).Value;
-            int meanCycleTime = (int)CVariables.Values.Select(x => x.X).Max();
+            int numberOfDistinctTasksExecuted = (int)ZVariables.Values.Select(x => x.X).Sum();
+            double meanCycleTime = CVariables.Values.Select(x => x.X).Average();
             Solution = new Solution(Instance.NumberOfTasks, Instance.Workers, NumberOfPeriods, numberOfDistinctTasksExecuted, meanCycleTime, ExecutionTimeMs);
 
             foreach (int station in Instance.GetWorkersList())
@@ -374,10 +374,9 @@ namespace Costa_and_Miralles_2009
 
         public override void WriteSolution(Output output)
         {
+            CompileSolution();
             if (HasSolution())
-            {
-
-            }
+                output.SetSolution(Solution!);
         }
     }
 }
