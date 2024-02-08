@@ -85,6 +85,12 @@ namespace Costa_and_Miralles_2009
                                 logger.AddLog($"Running {modelType}.");
                                 foreach (Model.ConstraintController constraintController in Enum.GetValues<Model.ConstraintController>())
                                 {
+                                    // For now, we're ignoring the new constraints
+                                    if (constraintController == Model.ConstraintController.FirstExtraConstraint || 
+                                        constraintController == Model.ConstraintController.SecondExtraConstraint || 
+                                        constraintController == Model.ConstraintController.BothExtraConstraints)
+                                    { continue; }
+
                                     logger.AddLog($"Running with {constraintController} constraint(s).");
                                     try
                                     {
@@ -96,6 +102,8 @@ namespace Costa_and_Miralles_2009
                                         env.LogFile = Path.Join(gurobiLogDirectory, $"gurobi_log-{output.FileName}.log");
                                         CostaMirallesModel model = new(env, numberOfPeriods, instance, maximumMeanCycleTime, constraintController);
                                         model.Run();
+                                        //model.ComputeIIS();
+                                        //model.Write($"{instance.FileName}.ilp");
                                         model.WriteSolution(output);
                                         output.Write();
 

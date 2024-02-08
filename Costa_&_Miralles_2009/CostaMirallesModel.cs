@@ -132,12 +132,9 @@ namespace Costa_and_Miralles_2009
                     foreach (int period in GetPeriodsList())
                     {
                         GRBLinExpr expression = new();
-                        foreach (int task in Instance.GetTasksList())
+                        foreach (int task in Instance.GetTasksList().Where(i => Instance.GetWorkersWhoCanExecuteTask(i).Contains(worker)))
                         {
-                            foreach (int worker2 in Instance.GetWorkersWhoCanExecuteTask(task))
-                            {
-                                expression.AddTerm(1d, XVariables[(station, worker2, task, period)]);
-                            }
+                            expression.AddTerm(1d, XVariables[(station, worker, task, period)]);
                         }
                         AddConstr(expression, GRB.LESS_EQUAL, Instance.NumberOfTasks * YVariables[(station, worker, period)], $"LimitXVariablesConstraint_s({station})_w({worker})_t({period})");
                     }
@@ -197,7 +194,7 @@ namespace Costa_and_Miralles_2009
                                     expression1.AddTerm(stationS, XVariables[(stationS, worker, task1, period)]);
                                     expression2.AddTerm(stationS, XVariables[(stationS, worker, task2, period)]);
                                 }
-                                AddConstr(expression1, GRB.LESS_EQUAL, expression2, $"ImmediatePrecedenceConstraint_i({task1})_j({task2})_k({stationK})_w_({worker})_t({period})");
+                                AddConstr(expression1, GRB.LESS_EQUAL, expression2, $"ImmediatePrecedenceConstraint_i({task1})_j({task2})_k({stationK})_w({worker})_t({period})");
                             }
                         }
                     }
