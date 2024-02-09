@@ -64,5 +64,23 @@ namespace Base.Domain
         {
             return Solution != null;
         }
+
+        public void WriteILP(Output output, Logger? logger = null)
+        {
+            try
+            {
+                ComputeIIS();
+                Write($"{output.GetFullPath().Replace(".json", ".ilp")}");
+            }
+            catch (Exception ex)
+            {
+                logger?.AddLog(ex);
+            }
+        }
+
+        public void WriteLP(Output output)
+        {
+            Write($"{output.GetFullPath().Replace(".json", ".lp")}");
+        }
     }
 }

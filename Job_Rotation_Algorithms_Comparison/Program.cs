@@ -1,5 +1,4 @@
-﻿using Base.DataManagers;
-using Base.Domain;
+﻿using Base.Domain;
 using Costa_and_Miralles_2009;
 using Gurobi;
 

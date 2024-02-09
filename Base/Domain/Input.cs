@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace Base.Domain
+﻿namespace Base.Domain
 {
     public class Input : BaseFile
     {

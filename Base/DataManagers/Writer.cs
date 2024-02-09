@@ -7,8 +7,8 @@ namespace Base.DataManagers
     {
         public static void WriteOutput(Output output, Dictionary<string, object?> data)
         {
-            var options = new JsonSerializerOptions { WriteIndented = true };
-            var json = JsonSerializer.Serialize(data, options);
+            JsonSerializerOptions options = new() { WriteIndented = true };
+            string json = JsonSerializer.Serialize(data, options);
             //var solutions = instance.Solutions.Values.Select(x => x.Id).ToList();
 
             File.WriteAllText(output.GetFullPath(), json);

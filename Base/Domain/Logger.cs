@@ -47,7 +47,7 @@ namespace Base.Domain
         {
             DateTime currentDateTime = DateTime.Now;
             string formattedDateTime = currentDateTime.ToString("MM/dd/yyyy hh:mm:ss tt").Replace(" ", "");
-            
+
             string log = $"[{formattedDateTime}]=>{message}";
             Logs.Add(log);
 

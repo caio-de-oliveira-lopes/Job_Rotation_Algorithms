@@ -1,9 +1,5 @@
 ﻿using Base.Domain;
 using Gurobi;
-using System.Reflection;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using static System.Collections.Specialized.BitVector32;
 
 namespace Costa_and_Miralles_2009
 {
@@ -30,9 +26,9 @@ namespace Costa_and_Miralles_2009
 
         protected override void CreateVariables()
         {
+            CreateZVariables();
             CreateXVariables();
             CreateYVariables();
-            CreateZVariables();
             CreateCVariables();
         }
 
@@ -80,35 +76,36 @@ namespace Costa_and_Miralles_2009
                 {
                     ZVariables.Add((worker, task), AddVar(0d, 1d, 1d, GRB.BINARY, $"Z(w({worker})_i({task}))"));
                 }
-            }            
+            }
         }
 
         private void CreateCVariables()
         {
             foreach (int period in GetPeriodsList())
             {
-                CVariables.Add(period, AddVar(0d, MaximumMeanCycleTime * NumberOfPeriods * 2, 0d, GRB.CONTINUOUS, $"C(t({period}))"));
+                CVariables.Add(period, AddVar(0d, MaximumMeanCycleTime * NumberOfPeriods, 0d, GRB.CONTINUOUS, $"C(t({period}))"));
             }
         }
 
         protected override void CreateConstraints()
         {
             CreateTaskAssignmentToOneWorkerConstraint(); // 1.2
-            CreateWorkerAssignmentConstraint(); // 1.3
-            CreateStationAssignmentConstraint(); // 1.4
-            CreateImmediatePrecedenceConstraint(); // 1.5
-            CreatePeriodCycleTimeConstraint(); // 1.6
-            CreateSumOfCycleTimeConstraint(); // 1.7
-            CreateLimitXVariablesConstraint(); // 1.8
-            CreateLimitZVariablesConstraint(); // 1.9
-            // Constraints 1.10, 1.11 and 1.12 are integrity constraints to define the variables x, y and z as binary
+            CreateWorkerMustExecuteAtLeastOneTaskConstraint(); // 1.3
+            CreateWorkerAssignmentConstraint(); // 1.4
+            CreateStationAssignmentConstraint(); // 1.5
+            CreateImmediatePrecedenceConstraint(); // 1.6
+            CreatePeriodCycleTimeConstraint(); // 1.7
+            CreateSumOfCycleTimeConstraint(); // 1.8
+            CreateLimitXVariablesConstraint(); // 1.9
+            CreateLimitZVariablesConstraint(); // 1.10
+            // Constraints 1.11, 1.12 and 1.13 are integrity constraints to define the variables x, y and z as binary
         }
 
-        private void CreateLimitZVariablesConstraint() // 1.9
+        private void CreateLimitZVariablesConstraint() // 1.10
         {
             foreach (int task in Instance.GetTasksList())
             {
-                foreach(int worker in Instance.GetWorkersWhoCanExecuteTask(task))
+                foreach (int worker in Instance.GetWorkersWhoCanExecuteTask(task))
                 {
                     GRBLinExpr expression = new();
                     foreach (int period in GetPeriodsList())
@@ -123,7 +120,7 @@ namespace Costa_and_Miralles_2009
             }
         }
 
-        private void CreateLimitXVariablesConstraint() // 1.8
+        private void CreateLimitXVariablesConstraint() // 1.9
         {
             foreach (int station in Instance.GetWorkersList())
             {
@@ -142,7 +139,7 @@ namespace Costa_and_Miralles_2009
             }
         }
 
-        private void CreateSumOfCycleTimeConstraint() // 1.7
+        private void CreateSumOfCycleTimeConstraint() // 1.8
         {
             GRBLinExpr expression = new();
             foreach (int period in GetPeriodsList())
@@ -152,7 +149,7 @@ namespace Costa_and_Miralles_2009
             AddConstr(expression, GRB.LESS_EQUAL, NumberOfPeriods * MaximumMeanCycleTime, $"SumOfCycleTimeConstraint");
         }
 
-        private void CreatePeriodCycleTimeConstraint() // 1.6
+        private void CreatePeriodCycleTimeConstraint() // 1.7
         {
             foreach (int station in Instance.GetWorkersList())
             {
@@ -171,7 +168,7 @@ namespace Costa_and_Miralles_2009
             }
         }
 
-        private void CreateImmediatePrecedenceConstraint() // 1.5
+        private void CreateImmediatePrecedenceConstraint() // 1.6
         {
             foreach (int period in GetPeriodsList())
             {
@@ -184,7 +181,7 @@ namespace Costa_and_Miralles_2009
                     {
                         foreach (int task2 in Instance.ImmediateFollowers[task1])
                         {
-                            var workers = Instance.GetWorkersExecutionIntersection(new List<int>() { task1, task2 });
+                            List<int> workers = Instance.GetWorkersExecutionIntersection(new List<int>() { task1, task2 });
                             foreach (int worker in workers)
                             {
                                 GRBLinExpr expression1 = new();
@@ -221,18 +218,37 @@ namespace Costa_and_Miralles_2009
             }
         }
 
+        private void CreateWorkerMustExecuteAtLeastOneTaskConstraint() // 1.3
+        {
+            foreach (int period in GetPeriodsList())
+            {
+                foreach (int station in Instance.GetWorkersList())
+                {
+                    GRBLinExpr expression = new();
+                    foreach (int task in Instance.GetTasksList())
+                    {
+                        foreach (int worker in Instance.GetWorkersWhoCanExecuteTask(task))
+                        {
+                            expression.AddTerm(1d, XVariables[(station, worker, task, period)]);
+                        }
+                    }
+                    AddConstr(expression, GRB.GREATER_EQUAL, 1d, $"WorkerMustExecuteAtLeastOneTaskConstraint_s({station})_t({period})");
+                }
+            }
+        }
+
         protected override void AddExtraConstraints()
         {
             if (Controller != ConstraintController.NoExtraConstraint)
             {
                 if (Controller != ConstraintController.SecondExtraConstraint) { }
-                    CreateFirstExtraConstraint(); // 1.13
+                CreateFirstExtraConstraint(); // 1.14
                 if (Controller != ConstraintController.FirstExtraConstraint) { }
-                    CreateSecondExtraConstraint(); // 1.14
+                CreateSecondExtraConstraint(); // 1.15
             }
         }
 
-        private void CreateSecondExtraConstraint() // 1.14
+        private void CreateSecondExtraConstraint() // 1.15
         {
             foreach (int station in Instance.GetWorkersList())
             {
@@ -256,7 +272,7 @@ namespace Costa_and_Miralles_2009
             }
         }
 
-        private void CreateFirstExtraConstraint() // 1.13
+        private void CreateFirstExtraConstraint() // 1.14
         {
             foreach (int station in Instance.GetWorkersList())
             {
@@ -281,7 +297,7 @@ namespace Costa_and_Miralles_2009
             }
         }
 
-        private void CreateWorkerAssignmentConstraint() // 1.3
+        private void CreateWorkerAssignmentConstraint() // 1.4
         {
             foreach (int period in GetPeriodsList())
             {
@@ -292,12 +308,12 @@ namespace Costa_and_Miralles_2009
                     {
                         expression.AddTerm(1d, YVariables[(station, worker, period)]);
                     }
-                    AddConstr(expression, GRB.LESS_EQUAL, 1d, $"WorkerAssignmentOnlyToOneStationPerPeriod_w({worker})_t({period})");
+                    AddConstr(expression, GRB.EQUAL, 1d, $"WorkerAssignmentOnlyToOneStationPerPeriod_w({worker})_t({period})");
                 }
             }
         }
 
-        private void CreateStationAssignmentConstraint() // 1.4
+        private void CreateStationAssignmentConstraint() // 1.5
         {
             foreach (int period in GetPeriodsList())
             {
@@ -308,7 +324,7 @@ namespace Costa_and_Miralles_2009
                     {
                         expression.AddTerm(1d, YVariables[(station, worker, period)]);
                     }
-                    AddConstr(expression, GRB.LESS_EQUAL, 1d, $"StationAssignmentOnlyToOneWorkerPerPeriod_s({station})_t({period})");
+                    AddConstr(expression, GRB.EQUAL, 1d, $"StationAssignmentOnlyToOneWorkerPerPeriod_s({station})_t({period})");
                 }
             }
         }

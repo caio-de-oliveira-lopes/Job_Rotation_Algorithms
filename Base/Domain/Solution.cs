@@ -25,7 +25,7 @@
             NewTasksExecutedByWorkerOnEachPeriod = new();
         }
 
-        public void AddAssignment(int period, int station, int worker, List<int> tasks) 
+        public void AddAssignment(int period, int station, int worker, List<int> tasks)
         {
             Assignment.TryAdd($"Period {period}", new Dictionary<string, Dictionary<string, List<int>>>());
             Assignment[$"Period {period}"].TryAdd($"Station {station}", new Dictionary<string, List<int>>());
@@ -40,7 +40,7 @@
 
         public int GetNumberOfNewTasksExecutedByWorkerOnPeriod(int period, int worker)
         {
-            if (NewTasksExecutedByWorkerOnEachPeriod.TryGetValue($"Period {period}", out var workerDict) && workerDict.TryGetValue($"Worker {worker}", out var tasks))
+            if (NewTasksExecutedByWorkerOnEachPeriod.TryGetValue($"Period {period}", out Dictionary<string, List<int>>? workerDict) && workerDict.TryGetValue($"Worker {worker}", out List<int>? tasks))
                 return tasks.Count;
             else
                 return 0;
