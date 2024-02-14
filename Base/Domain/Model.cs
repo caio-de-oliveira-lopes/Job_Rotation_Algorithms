@@ -74,7 +74,7 @@ namespace Base.Domain
             }
             catch (Exception ex)
             {
-                logger?.AddLog(ex);
+                logger?.AddLog(ex, false);
             }
         }
 

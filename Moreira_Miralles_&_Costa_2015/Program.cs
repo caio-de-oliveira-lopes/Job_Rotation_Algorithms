@@ -107,7 +107,7 @@ namespace Moreira_Miralles_and_Costa_2015
                                         model.Run();
 
                                         // If infeasible, writes ILP file
-                                        model.WriteILP(output, logger);
+                                        //model.WriteILP(output, logger);
 
                                         model.WriteSolution(output);
                                         output.Write();

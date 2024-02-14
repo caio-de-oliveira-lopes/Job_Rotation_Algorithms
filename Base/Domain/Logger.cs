@@ -38,12 +38,12 @@ namespace Base.Domain
             Writer.WriteLogs(this);
         }
 
-        public void AddLog(Exception ex)
+        public void AddLog(Exception ex, bool writeOnConsole = true)
         {
-            AddLog(ex.ToString());
+            AddLog(ex.ToString(), writeOnConsole);
         }
 
-        public void AddLog(string message)
+        public void AddLog(string message, bool writeOnConsole = true)
         {
             DateTime currentDateTime = DateTime.Now;
             string formattedDateTime = currentDateTime.ToString("MM/dd/yyyy hh:mm:ss tt").Replace(" ", "");
@@ -51,7 +51,9 @@ namespace Base.Domain
             string log = $"[{formattedDateTime}]=>{message}";
             Logs.Add(log);
 
-            Console.WriteLine(log);
+            if (writeOnConsole)
+                Console.WriteLine(log);
+
             Write();
         }
 

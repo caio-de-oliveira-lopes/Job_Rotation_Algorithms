@@ -76,6 +76,17 @@
             return workersWhoCanExecuteTask;
         }
 
+        public List<int> GetWorkersWhoCantExecuteTask(int task)
+        {
+            List<int> workersWhoCanExecuteTask = new();
+            foreach (int worker in GetWorkersList())
+            {
+                if (!Matrix[task, worker].HasValue)
+                    workersWhoCanExecuteTask.Add(worker);
+            }
+            return workersWhoCanExecuteTask;
+        }
+
         public int? GetTaskTime(int task, int worker)
         {
             return Matrix[task, worker];

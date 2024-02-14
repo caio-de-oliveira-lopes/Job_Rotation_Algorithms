@@ -114,7 +114,7 @@ namespace Moreira_Miralles_and_Costa_2015
             CreateSumOfCycleTimeConstraint(); // 1.22
             CreateUVariableValueAssociation(); // 1.23
             CreateLimitZVariablesConstraint(); // 1.24
-            CreateXandYVariablesMustAssumeValueTogether(); // 1.25
+            CreateWorkerShouldNotBeAssignedToInfeasibleTask(); // 1.25
 
             // Constraints 1.26, 1.27, 1.28 and 1.29 are integrity constraints to define the variables x, y, z and u as binary
         }
@@ -233,8 +233,9 @@ namespace Moreira_Miralles_and_Costa_2015
                     {
                         foreach (int period in GetPeriodsList())
                         {
-                            GRBLinExpr expression = new(UVariables[(worker, task, period)], 2d);
-                            AddConstr(expression, GRB.LESS_EQUAL, Instance.NumberOfTasks * YVariables[(station, worker, period)], $"UVariableValueAssociation_s({station})_({task})_w({worker})_t({period})");
+                            AddConstr(2d * UVariables[(worker, task, period)], GRB.LESS_EQUAL, 
+                                XVariables[(station, task, period)] + YVariables[(station, worker, period)], 
+                                $"UVariableValueAssociation_s({station})_({task})_w({worker})_t({period})");
                         }
                     }
                 }
@@ -257,18 +258,18 @@ namespace Moreira_Miralles_and_Costa_2015
             }
         }
 
-        private void CreateXandYVariablesMustAssumeValueTogether() // 1.25
+        private void CreateWorkerShouldNotBeAssignedToInfeasibleTask() // 1.25
         {
             foreach (int station in Instance.GetWorkersList())
             {
                 foreach (int task in Instance.GetTasksList())
                 {
-                    foreach (int worker in Instance.GetWorkersWhoCanExecuteTask(task))
+                    foreach (int worker in Instance.GetWorkersWhoCantExecuteTask(task))
                     {
                         foreach (int period in GetPeriodsList())
                         {
                             AddConstr(YVariables[(station, worker, period)], GRB.LESS_EQUAL, 1 - XVariables[(station, task, period)], 
-                                $"XandYVariablesMustAssumeValueTogether_s({station})_i({task})_w({worker})_t({period})");
+                                $"WorkerShouldNotBeAssignedToInfeasibleTask_s({station})_i({task})_w({worker})_t({period})");
                         }
                     }
                 }
@@ -345,8 +346,7 @@ namespace Moreira_Miralles_and_Costa_2015
         }
 
         protected override void CompileSolution()
-        {
-            
+        {            
             int numberOfDistinctTasksExecuted = (int)ZVariables.Values.Select(x => x.X).Sum();
             double meanCycleTime = CVariables.Values.Select(x => x.X).Average();
             Solution = new Solution(Instance.NumberOfTasks, Instance.Workers, NumberOfPeriods, numberOfDistinctTasksExecuted, meanCycleTime, ExecutionTimeMs);
