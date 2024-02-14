@@ -1,24 +1,29 @@
 ﻿using Base.Domain;
+using Base.Utils;
 using Gurobi;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 
-namespace Costa_and_Miralles_2009
+namespace Moreira_Miralles_and_Costa_2015
 {
-    public class CostaMirallesModel : Model
+    public class MoreiraMirallesCostaModel : Model
     {
-        public Dictionary<(int, int, int, int), GRBVar> XVariables { get; private set; }
+        public Dictionary<(int, int, int), GRBVar> XVariables { get; private set; }
         public Dictionary<(int, int, int), GRBVar> YVariables { get; private set; }
         public Dictionary<(int, int), GRBVar> ZVariables { get; private set; }
         public Dictionary<int, GRBVar> CVariables { get; private set; }
+        public Dictionary<(int, int, int), GRBVar> UVariables { get; private set; }
         public int MaximumMeanCycleTime { get; private set; }
         public ConstraintController Controller { get; private set; }
         public long ExecutionTimeMs { get; private set; }
 
-        public CostaMirallesModel(GRBEnv env, int numberOfPeriods, Input instance, int maximumMeanCycleTime, ConstraintController controller) : base(env, numberOfPeriods, instance)
+        public MoreiraMirallesCostaModel(GRBEnv env, int numberOfPeriods, Input instance, int maximumMeanCycleTime, ConstraintController controller) : base(env, numberOfPeriods, instance)
         {
             XVariables = new();
             YVariables = new();
             ZVariables = new();
             CVariables = new();
+            UVariables = new();
             MaximumMeanCycleTime = maximumMeanCycleTime;
             Controller = controller;
             BuildModel();
@@ -30,6 +35,7 @@ namespace Costa_and_Miralles_2009
             CreateXVariables();
             CreateYVariables();
             CreateCVariables();
+            CreateUVariables();
         }
 
         protected override void DefineSense()
@@ -41,14 +47,11 @@ namespace Costa_and_Miralles_2009
         {
             foreach (int station in Instance.GetWorkersList())
             {
-                foreach (int worker in Instance.GetWorkersList())
+                foreach (int task in Instance.GetTasksList())
                 {
-                    foreach (int task in Instance.GetTasksList())
+                    foreach (int period in GetPeriodsList())
                     {
-                        foreach (int period in GetPeriodsList())
-                        {
-                            XVariables.Add((station, worker, task, period), AddVar(0d, 1d, 0d, GRB.BINARY, $"X(s({station})_w({worker})_i({task})_t({period}))"));
-                        }
+                        XVariables.Add((station, task, period), AddVar(0d, 1d, 0d, GRB.BINARY, $"X(s({station})_i({task})_t({period}))"));
                     }
                 }
             }
@@ -87,21 +90,36 @@ namespace Costa_and_Miralles_2009
             }
         }
 
-        protected override void CreateConstraints()
+        private void CreateUVariables()
         {
-            CreateTaskAssignmentToOneWorkerConstraint(); // 1.2
-            CreateWorkerMustExecuteAtLeastOneTaskConstraint(); // 1.3
-            CreateWorkerAssignmentConstraint(); // 1.4
-            CreateStationAssignmentConstraint(); // 1.5
-            CreateImmediatePrecedenceConstraint(); // 1.6
-            CreatePeriodCycleTimeConstraint(); // 1.7
-            CreateSumOfCycleTimeConstraint(); // 1.8
-            CreateLimitXVariablesConstraint(); // 1.9
-            CreateLimitZVariablesConstraint(); // 1.10
-            // Constraints 1.11, 1.12 and 1.13 are integrity constraints to define the variables x, y and z as binary
+            foreach (int task in Instance.GetTasksList())
+            {
+                foreach (int worker in Instance.GetWorkersWhoCanExecuteTask(task))
+                {
+                    foreach (int period in GetPeriodsList())
+                    {
+                        UVariables.Add((worker, task, period), AddVar(0d, 1d, 0d, GRB.BINARY, $"U(w({worker})_i({task})_t({period}))"));
+                    }
+                }
+            }
         }
 
-        private void CreateTaskAssignmentToOneWorkerConstraint() // 1.2
+        protected override void CreateConstraints()
+        {
+            CreateTaskAssignmentToOneWorkerConstraint(); // 1.17
+            CreateWorkerAssignmentConstraint(); // 1.18
+            CreateStationAssignmentConstraint(); // 1.19
+            CreateImmediatePrecedenceConstraint(); // 1.20
+            CreatePeriodCycleTimeConstraint(); // 1.21
+            CreateSumOfCycleTimeConstraint(); // 1.22
+            CreateUVariableValueAssociation(); // 1.23
+            CreateLimitZVariablesConstraint(); // 1.24
+            CreateXandYVariablesMustAssumeValueTogether(); // 1.25
+
+            // Constraints 1.26, 1.27, 1.28 and 1.29 are integrity constraints to define the variables x, y, z and u as binary
+        }
+
+        private void CreateTaskAssignmentToOneWorkerConstraint() // 1.17
         {
             foreach (int period in GetPeriodsList())
             {
@@ -110,36 +128,14 @@ namespace Costa_and_Miralles_2009
                     GRBLinExpr expression = new();
                     foreach (int station in Instance.GetWorkersList())
                     {
-                        foreach (int worker in Instance.GetWorkersWhoCanExecuteTask(task))
-                        {
-                            expression.AddTerm(1d, XVariables[(station, worker, task, period)]);
-                        }
+                        expression.AddTerm(1d, XVariables[(station, task, period)]);
                     }
                     AddConstr(expression, GRB.EQUAL, 1d, $"TaskAssignmentToOneWorkerConstraint_i({task})_t({period})");
                 }
             }
         }
 
-        private void CreateWorkerMustExecuteAtLeastOneTaskConstraint() // 1.3
-        {
-            foreach (int period in GetPeriodsList())
-            {
-                foreach (int station in Instance.GetWorkersList())
-                {
-                    GRBLinExpr expression = new();
-                    foreach (int task in Instance.GetTasksList())
-                    {
-                        foreach (int worker in Instance.GetWorkersWhoCanExecuteTask(task))
-                        {
-                            expression.AddTerm(1d, XVariables[(station, worker, task, period)]);
-                        }
-                    }
-                    AddConstr(expression, GRB.GREATER_EQUAL, 1d, $"WorkerMustExecuteAtLeastOneTaskConstraint_s({station})_t({period})");
-                }
-            }
-        }
-
-        private void CreateWorkerAssignmentConstraint() // 1.4
+        private void CreateWorkerAssignmentConstraint() // 1.18
         {
             foreach (int period in GetPeriodsList())
             {
@@ -155,7 +151,7 @@ namespace Costa_and_Miralles_2009
             }
         }
 
-        private void CreateStationAssignmentConstraint() // 1.5
+        private void CreateStationAssignmentConstraint() // 1.19
         {
             foreach (int period in GetPeriodsList())
             {
@@ -171,7 +167,7 @@ namespace Costa_and_Miralles_2009
             }
         }
 
-        private void CreateImmediatePrecedenceConstraint() // 1.6
+        private void CreateImmediatePrecedenceConstraint() // 1.20
         {
             foreach (int period in GetPeriodsList())
             {
@@ -184,54 +180,21 @@ namespace Costa_and_Miralles_2009
                     {
                         foreach (int task2 in Instance.ImmediateFollowers[task1])
                         {
-                            List<int> workers = Instance.GetWorkersExecutionIntersection(new List<int>() { task1, task2 });
-                            foreach (int worker in workers)
+                            GRBLinExpr expression1 = new();
+                            GRBLinExpr expression2 = new();
+                            foreach (int stationS in Instance.GetWorkersList().Where(s => s >= stationK))
                             {
-                                GRBLinExpr expression1 = new();
-                                GRBLinExpr expression2 = new();
-                                foreach (int stationS in Instance.GetWorkersList().Where(s => s >= stationK))
-                                {
-                                    expression1.AddTerm(stationS, XVariables[(stationS, worker, task1, period)]);
-                                    expression2.AddTerm(stationS, XVariables[(stationS, worker, task2, period)]);
-                                }
-                                AddConstr(expression1, GRB.LESS_EQUAL, expression2, $"ImmediatePrecedenceConstraint_i({task1})_j({task2})_k({stationK})_w({worker})_t({period})");
+                                expression1.AddTerm(stationS, XVariables[(stationS, task1, period)]);
+                                expression2.AddTerm(stationS, XVariables[(stationS, task2, period)]);
                             }
+                            AddConstr(expression1, GRB.LESS_EQUAL, expression2, $"ImmediatePrecedenceConstraint_i({task1})_j({task2})_k({stationK})_t({period})");
                         }
                     }
                 }
             }
         }
 
-        private void CreatePeriodCycleTimeConstraint() // 1.7
-        {
-            foreach (int station in Instance.GetWorkersList())
-            {
-                foreach (int period in GetPeriodsList())
-                {
-                    GRBLinExpr expression = new();
-                    foreach (int task in Instance.GetTasksList())
-                    {
-                        foreach (int worker in Instance.GetWorkersWhoCanExecuteTask(task))
-                        {
-                            expression.AddTerm(Instance.GetTaskTime(task, worker)!.Value, XVariables[(station, worker, task, period)]);
-                        }
-                    }
-                    AddConstr(expression, GRB.LESS_EQUAL, CVariables[period], $"PeriodCycleTimeConstraint_s({station})_t({period})");
-                }
-            }
-        }
-
-        private void CreateSumOfCycleTimeConstraint() // 1.8
-        {
-            GRBLinExpr expression = new();
-            foreach (int period in GetPeriodsList())
-            {
-                expression.AddTerm(1d, CVariables[period]);
-            }
-            AddConstr(expression, GRB.LESS_EQUAL, NumberOfPeriods * MaximumMeanCycleTime, $"SumOfCycleTimeConstraint");
-        }
-
-        private void CreateLimitXVariablesConstraint() // 1.9
+        private void CreatePeriodCycleTimeConstraint() // 1.21
         {
             foreach (int station in Instance.GetWorkersList())
             {
@@ -242,15 +205,43 @@ namespace Costa_and_Miralles_2009
                         GRBLinExpr expression = new();
                         foreach (int task in Instance.GetTasksList().Where(i => Instance.GetWorkersWhoCanExecuteTask(i).Contains(worker)))
                         {
-                            expression.AddTerm(1d, XVariables[(station, worker, task, period)]);
+                            expression.AddTerm(Instance.GetTaskTime(task, worker)!.Value, XVariables[(station, task, period)]);
                         }
-                        AddConstr(expression, GRB.LESS_EQUAL, Instance.NumberOfTasks * YVariables[(station, worker, period)], $"LimitXVariablesConstraint_s({station})_w({worker})_t({period})");
+                        AddConstr(expression, GRB.LESS_EQUAL, CVariables[period] + (Util.BigM * (1 - YVariables[(station, worker, period)])), $"PeriodCycleTimeConstraint_s({station})_t({period})");
                     }
                 }
             }
         }
 
-        private void CreateLimitZVariablesConstraint() // 1.10
+        private void CreateSumOfCycleTimeConstraint() // 1.22
+        {
+            GRBLinExpr expression = new();
+            foreach (int period in GetPeriodsList())
+            {
+                expression.AddTerm(1d, CVariables[period]);
+            }
+            AddConstr(expression, GRB.LESS_EQUAL, NumberOfPeriods * MaximumMeanCycleTime, $"SumOfCycleTimeConstraint");
+        }
+
+        private void CreateUVariableValueAssociation() // 1.23
+        {
+            foreach (int station in Instance.GetWorkersList())
+            {
+                foreach (int task in Instance.GetTasksList())
+                {
+                    foreach (int worker in Instance.GetWorkersWhoCanExecuteTask(task))
+                    {
+                        foreach (int period in GetPeriodsList())
+                        {
+                            GRBLinExpr expression = new(UVariables[(worker, task, period)], 2d);
+                            AddConstr(expression, GRB.LESS_EQUAL, Instance.NumberOfTasks * YVariables[(station, worker, period)], $"UVariableValueAssociation_s({station})_({task})_w({worker})_t({period})");
+                        }
+                    }
+                }
+            }
+        }
+
+        private void CreateLimitZVariablesConstraint() // 1.24
         {
             foreach (int task in Instance.GetTasksList())
             {
@@ -259,12 +250,27 @@ namespace Costa_and_Miralles_2009
                     GRBLinExpr expression = new();
                     foreach (int period in GetPeriodsList())
                     {
-                        foreach (int station in Instance.GetWorkersList())
-                        {
-                            expression.AddTerm(1d, XVariables[(station, worker, task, period)]);
-                        }
+                        expression.AddTerm(1d, UVariables[(worker, task, period)]);
                     }
                     AddConstr(ZVariables[(worker, task)], GRB.LESS_EQUAL, expression, $"LimitZVariablesConstraint_w({worker})_i({task})");
+                }
+            }
+        }
+
+        private void CreateXandYVariablesMustAssumeValueTogether() // 1.25
+        {
+            foreach (int station in Instance.GetWorkersList())
+            {
+                foreach (int task in Instance.GetTasksList())
+                {
+                    foreach (int worker in Instance.GetWorkersWhoCanExecuteTask(task))
+                    {
+                        foreach (int period in GetPeriodsList())
+                        {
+                            AddConstr(YVariables[(station, worker, period)], GRB.LESS_EQUAL, 1 - XVariables[(station, task, period)], 
+                                $"XandYVariablesMustAssumeValueTogether_s({station})_i({task})_w({worker})_t({period})");
+                        }
+                    }
                 }
             }
         }
@@ -274,13 +280,13 @@ namespace Costa_and_Miralles_2009
             if (Controller != ConstraintController.NoExtraConstraint)
             {
                 if (Controller != ConstraintController.SecondExtraConstraint) { }
-                CreateFirstExtraConstraint(); // 1.14
+                CreateFirstExtraConstraint(); // 1.30
                 if (Controller != ConstraintController.FirstExtraConstraint) { }
-                CreateSecondExtraConstraint(); // 1.15
+                CreateSecondExtraConstraint(); // 1.31
             }
         }
 
-        private void CreateFirstExtraConstraint() // 1.14
+        private void CreateFirstExtraConstraint() // 1.30
         {
             foreach (int station in Instance.GetWorkersList())
             {
@@ -294,8 +300,8 @@ namespace Costa_and_Miralles_2009
                             {
                                 foreach (int period in GetPeriodsList())
                                 {
-                                    AddConstr(XVariables[(station, worker, task2, period)], GRB.GREATER_EQUAL,
-                                        XVariables[(station, worker, task1, period)] + XVariables[(station, worker, task3, period)] - 1,
+                                    AddConstr(XVariables[(station, task2, period)], GRB.GREATER_EQUAL,
+                                        XVariables[(station, task1, period)] + XVariables[(station, task3, period)] - 1,
                                         $"FirstExtraConstraint_s({station})_i({task1})_j({task2})_k({task3})_w({worker})_t({period})");
                                 }
                             }
@@ -305,7 +311,7 @@ namespace Costa_and_Miralles_2009
             }
         }
 
-        private void CreateSecondExtraConstraint() // 1.15
+        private void CreateSecondExtraConstraint() // 1.31
         {
             foreach (int station in Instance.GetWorkersList())
             {
@@ -319,8 +325,8 @@ namespace Costa_and_Miralles_2009
                             {
                                 foreach (int period in GetPeriodsList())
                                 {
-                                    AddConstr(XVariables[(station, worker, task1, period)] + XVariables[(station, worker, task3, period)], GRB.LESS_EQUAL,
-                                        1d, $"SecondExtraConstraint_s({station})_i({task1})_j({task2})_k({task3})_w({worker})_t({period})");
+                                    AddConstr(XVariables[(station, task1, period)] + XVariables[(station, task3, period)], GRB.LESS_EQUAL, 2 - YVariables[(station, worker, period)], 
+                                        $"SecondExtraConstraint_s({station})_i({task1})_j({task2})_k({task3})_w({worker})_t({period})");
                                 }
                             }
                         }
@@ -340,6 +346,7 @@ namespace Costa_and_Miralles_2009
 
         protected override void CompileSolution()
         {
+            
             int numberOfDistinctTasksExecuted = (int)ZVariables.Values.Select(x => x.X).Sum();
             double meanCycleTime = CVariables.Values.Select(x => x.X).Average();
             Solution = new Solution(Instance.NumberOfTasks, Instance.Workers, NumberOfPeriods, numberOfDistinctTasksExecuted, meanCycleTime, ExecutionTimeMs);
@@ -353,7 +360,7 @@ namespace Costa_and_Miralles_2009
                         List<int> executedTasks = new();
                         foreach (int task in Instance.GetTasksList())
                         {
-                            if (XVariables[(station, worker, task, period)].X == 1d)
+                            if (XVariables[(station, task, period)].X == 1d && YVariables[(station, worker, period)].X == 1d)
                                 executedTasks.Add(task);
                         }
                         if (executedTasks.Any())
@@ -372,7 +379,7 @@ namespace Costa_and_Miralles_2009
                     {
                         foreach (int task in Instance.GetTasksList())
                         {
-                            if (XVariables[(station, worker, task, period)].X == 1d)
+                            if (XVariables[(station, task, period)].X == 1d && YVariables[(station, worker, period)].X == 1d)
                             {
                                 if (!executedTasks.Contains(task))
                                     newTasks.Add(task);

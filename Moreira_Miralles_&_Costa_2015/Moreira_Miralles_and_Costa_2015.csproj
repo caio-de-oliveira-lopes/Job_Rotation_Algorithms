@@ -8,4 +8,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Base\Base.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="gurobi100.netstandard20">
+      <HintPath>..\..\..\gurobi1001\win64\lib\gurobi100.netstandard20.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

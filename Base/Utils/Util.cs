@@ -2,6 +2,8 @@
 {
     public static class Util
     {
+        public const int BigM = 10_000;
+
         public static int? ToNullableInt(this string s)
         {
             if (int.TryParse(s, out int i)) return i;
