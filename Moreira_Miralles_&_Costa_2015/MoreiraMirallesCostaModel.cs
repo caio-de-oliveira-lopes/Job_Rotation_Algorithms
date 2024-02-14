@@ -107,16 +107,17 @@ namespace Moreira_Miralles_and_Costa_2015
         protected override void CreateConstraints()
         {
             CreateTaskAssignmentToOneWorkerConstraint(); // 1.17
-            CreateWorkerAssignmentConstraint(); // 1.18
-            CreateStationAssignmentConstraint(); // 1.19
-            CreateImmediatePrecedenceConstraint(); // 1.20
-            CreatePeriodCycleTimeConstraint(); // 1.21
-            CreateSumOfCycleTimeConstraint(); // 1.22
-            CreateUVariableValueAssociation(); // 1.23
-            CreateLimitZVariablesConstraint(); // 1.24
-            CreateWorkerShouldNotBeAssignedToInfeasibleTask(); // 1.25
+            CreateWorkerMustExecuteAtLeastOneTaskConstraint(); // 1.18
+            CreateWorkerAssignmentConstraint(); // 1.19
+            CreateStationAssignmentConstraint(); // 1.20
+            CreateImmediatePrecedenceConstraint(); // 1.21
+            CreatePeriodCycleTimeConstraint(); // 1.22
+            CreateSumOfCycleTimeConstraint(); // 1.23
+            CreateUVariableValueAssociation(); // 1.24
+            CreateLimitZVariablesConstraint(); // 1.25
+            CreateWorkerShouldNotBeAssignedToInfeasibleTask(); // 1.26
 
-            // Constraints 1.26, 1.27, 1.28 and 1.29 are integrity constraints to define the variables x, y, z and u as binary
+            // Constraints 1.27, 1.28, 1.29 and 1.30 are integrity constraints to define the variables x, y, z and u as binary
         }
 
         private void CreateTaskAssignmentToOneWorkerConstraint() // 1.17
@@ -135,7 +136,23 @@ namespace Moreira_Miralles_and_Costa_2015
             }
         }
 
-        private void CreateWorkerAssignmentConstraint() // 1.18
+        private void CreateWorkerMustExecuteAtLeastOneTaskConstraint() // 1.18
+        {
+            foreach (int period in GetPeriodsList())
+            {
+                foreach (int station in Instance.GetWorkersList())
+                {
+                    GRBLinExpr expression = new();
+                    foreach (int task in Instance.GetTasksList())
+                    {
+                        expression.AddTerm(1d, XVariables[(station, task, period)]);
+                    }
+                    AddConstr(expression, GRB.GREATER_EQUAL, 1d, $"WorkerMustExecuteAtLeastOneTaskConstraint_s({station})_t({period})");
+                }
+            }
+        }
+
+        private void CreateWorkerAssignmentConstraint() // 1.19
         {
             foreach (int period in GetPeriodsList())
             {
@@ -151,7 +168,7 @@ namespace Moreira_Miralles_and_Costa_2015
             }
         }
 
-        private void CreateStationAssignmentConstraint() // 1.19
+        private void CreateStationAssignmentConstraint() // 1.20
         {
             foreach (int period in GetPeriodsList())
             {
@@ -167,7 +184,7 @@ namespace Moreira_Miralles_and_Costa_2015
             }
         }
 
-        private void CreateImmediatePrecedenceConstraint() // 1.20
+        private void CreateImmediatePrecedenceConstraint() // 1.21
         {
             foreach (int period in GetPeriodsList())
             {
@@ -194,7 +211,7 @@ namespace Moreira_Miralles_and_Costa_2015
             }
         }
 
-        private void CreatePeriodCycleTimeConstraint() // 1.21
+        private void CreatePeriodCycleTimeConstraint() // 1.22
         {
             foreach (int station in Instance.GetWorkersList())
             {
@@ -213,7 +230,7 @@ namespace Moreira_Miralles_and_Costa_2015
             }
         }
 
-        private void CreateSumOfCycleTimeConstraint() // 1.22
+        private void CreateSumOfCycleTimeConstraint() // 1.23
         {
             GRBLinExpr expression = new();
             foreach (int period in GetPeriodsList())
@@ -223,7 +240,7 @@ namespace Moreira_Miralles_and_Costa_2015
             AddConstr(expression, GRB.LESS_EQUAL, NumberOfPeriods * MaximumMeanCycleTime, $"SumOfCycleTimeConstraint");
         }
 
-        private void CreateUVariableValueAssociation() // 1.23
+        private void CreateUVariableValueAssociation() // 1.24
         {
             foreach (int station in Instance.GetWorkersList())
             {
@@ -242,7 +259,7 @@ namespace Moreira_Miralles_and_Costa_2015
             }
         }
 
-        private void CreateLimitZVariablesConstraint() // 1.24
+        private void CreateLimitZVariablesConstraint() // 1.25
         {
             foreach (int task in Instance.GetTasksList())
             {
@@ -258,7 +275,7 @@ namespace Moreira_Miralles_and_Costa_2015
             }
         }
 
-        private void CreateWorkerShouldNotBeAssignedToInfeasibleTask() // 1.25
+        private void CreateWorkerShouldNotBeAssignedToInfeasibleTask() // 1.26
         {
             foreach (int station in Instance.GetWorkersList())
             {
@@ -281,9 +298,9 @@ namespace Moreira_Miralles_and_Costa_2015
             if (Controller != ConstraintController.NoExtraConstraint)
             {
                 if (Controller != ConstraintController.SecondExtraConstraint) { }
-                CreateFirstExtraConstraint(); // 1.30
+                CreateFirstExtraConstraint(); // 1.31
                 if (Controller != ConstraintController.FirstExtraConstraint) { }
-                CreateSecondExtraConstraint(); // 1.31
+                CreateSecondExtraConstraint(); // 1.32
             }
         }
 
@@ -348,8 +365,8 @@ namespace Moreira_Miralles_and_Costa_2015
         protected override void CompileSolution()
         {            
             int numberOfDistinctTasksExecuted = (int)ZVariables.Values.Select(x => x.X).Sum();
-            double meanCycleTime = CVariables.Values.Select(x => x.X).Average();
-            Solution = new Solution(Instance.NumberOfTasks, Instance.Workers, NumberOfPeriods, numberOfDistinctTasksExecuted, meanCycleTime, ExecutionTimeMs);
+            Dictionary<(int, int), int> cycleTimes = new();
+            Solution = new Solution(Instance.NumberOfTasks, Instance.Workers, NumberOfPeriods, numberOfDistinctTasksExecuted, ExecutionTimeMs);
 
             foreach (int station in Instance.GetWorkersList())
             {
@@ -357,6 +374,9 @@ namespace Moreira_Miralles_and_Costa_2015
                 {
                     foreach (int period in GetPeriodsList())
                     {
+                        if (!cycleTimes.ContainsKey((station, period)))
+                            cycleTimes.Add((station, period), 0);
+
                         List<int> executedTasks = new();
                         foreach (int task in Instance.GetTasksList())
                         {
@@ -365,9 +385,15 @@ namespace Moreira_Miralles_and_Costa_2015
                         }
                         if (executedTasks.Any())
                             Solution.AddAssignment(period, station, worker, executedTasks);
+
+                        executedTasks.ForEach(x => cycleTimes[(station, period)] += Instance.GetTaskTime(x, worker)!.Value);
                     }
                 }
             }
+
+            //double meanCycleTime = CVariables.Values.Select(x => x.X).Average();
+            double meanCycleTime = cycleTimes.Values.Average();
+            Solution.SetMeanCycleTime(meanCycleTime);
 
             foreach (int worker in Instance.GetWorkersList())
             {

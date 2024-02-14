@@ -13,16 +13,21 @@
         // Key is (period, worker) and Value is the number of new tasks executed by that worker on a said period
         public Dictionary<string, Dictionary<string, List<int>>> NewTasksExecutedByWorkerOnEachPeriod { get; private set; }
 
-        public Solution(int numberOfTasks, int numberOfWorkers, int numberOfPeriods, int numberOfDistinctTasksExecuted, double meanCycleTime, long executionTimeMs)
+        public Solution(int numberOfTasks, int numberOfWorkers, int numberOfPeriods, int numberOfDistinctTasksExecuted, long executionTimeMs)
         {
             NumberOfTasks = numberOfTasks;
             NumberOfWorkers = numberOfWorkers;
             NumberOfPeriods = numberOfPeriods;
             NumberOfDistinctTasksExecuted = numberOfDistinctTasksExecuted;
-            MeanCycleTime = meanCycleTime;
+            MeanCycleTime = 0d;
             ExecutionTimeMs = executionTimeMs;
             Assignment = new();
             NewTasksExecutedByWorkerOnEachPeriod = new();
+        }
+
+        public void SetMeanCycleTime(double meanCycleTime)
+        {
+            MeanCycleTime = meanCycleTime;
         }
 
         public void AddAssignment(int period, int station, int worker, List<int> tasks)
