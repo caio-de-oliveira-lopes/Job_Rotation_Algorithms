@@ -65,6 +65,11 @@
             return Enumerable.Range(0, NumberOfTasks).ToList();
         }
 
+        public List<int> GetTasksExecutedByWorker(int worker)
+        {
+            return GetTasksList().Where(i => GetWorkersWhoCanExecuteTask(i).Contains(worker)).ToList();
+        }
+
         public List<int> GetWorkersWhoCanExecuteTask(int task)
         {
             List<int> workersWhoCanExecuteTask = new();

@@ -73,9 +73,9 @@ namespace Moreira_Miralles_and_Costa_2015
 
         private void CreateZVariables()
         {
-            foreach (int worker in Instance.GetWorkersList())
+            foreach (int task in Instance.GetTasksList())
             {
-                foreach (int task in Instance.GetTasksList())
+                foreach (int worker in Instance.GetWorkersWhoCanExecuteTask(task))
                 {
                     ZVariables.Add((worker, task), AddVar(0d, 1d, 1d, GRB.BINARY, $"Z(w({worker})_i({task}))"));
                 }
@@ -114,6 +114,7 @@ namespace Moreira_Miralles_and_Costa_2015
             CreatePeriodCycleTimeConstraint(); // 1.22
             CreateSumOfCycleTimeConstraint(); // 1.23
             CreateUVariableValueAssociation(); // 1.24
+            CreateUVariableValueAssociation2();
             CreateLimitZVariablesConstraint(); // 1.25
             CreateWorkerShouldNotBeAssignedToInfeasibleTask(); // 1.26
 
@@ -220,7 +221,7 @@ namespace Moreira_Miralles_and_Costa_2015
                     foreach (int period in GetPeriodsList())
                     {
                         GRBLinExpr expression = new();
-                        foreach (int task in Instance.GetTasksList().Where(i => Instance.GetWorkersWhoCanExecuteTask(i).Contains(worker)))
+                        foreach (int task in Instance.GetTasksExecutedByWorker(worker))
                         {
                             expression.AddTerm(Instance.GetTaskTime(task, worker)!.Value, XVariables[(station, task, period)]);
                         }
@@ -252,7 +253,25 @@ namespace Moreira_Miralles_and_Costa_2015
                         {
                             AddConstr(2d * UVariables[(worker, task, period)], GRB.LESS_EQUAL, 
                                 XVariables[(station, task, period)] + YVariables[(station, worker, period)], 
-                                $"UVariableValueAssociation_s({station})_({task})_w({worker})_t({period})");
+                                $"UVariableValueAssociation_s({station})_i({task})_w({worker})_t({period})");
+                        }
+                    }
+                }
+            }
+        }
+
+        private void CreateUVariableValueAssociation2() // xx
+        {
+            foreach (int station in Instance.GetWorkersList())
+            {
+                foreach (int task in Instance.GetTasksList())
+                {
+                    foreach (int worker in Instance.GetWorkersWhoCanExecuteTask(task))
+                    {
+                        foreach (int period in GetPeriodsList())
+                        {
+                            AddConstr(XVariables[(station, task, period)] + YVariables[(station, worker, period)], GRB.LESS_EQUAL, UVariables[(worker, task, period)] + 1,
+                                $"UVariableValueAssociation2_s({station})_i({task})_w({worker})_t({period})");
                         }
                     }
                 }
@@ -378,9 +397,9 @@ namespace Moreira_Miralles_and_Costa_2015
                             cycleTimes.Add((station, period), 0);
 
                         List<int> executedTasks = new();
-                        foreach (int task in Instance.GetTasksList())
+                        foreach (int task in Instance.GetTasksExecutedByWorker(worker))
                         {
-                            if (XVariables[(station, task, period)].X == 1d && YVariables[(station, worker, period)].X == 1d)
+                            if (XVariables[(station, task, period)].X == 1d && YVariables[(station, worker, period)].X == 1d && UVariables[(worker, task, period)].X == 1d)
                                 executedTasks.Add(task);
                         }
                         if (executedTasks.Any())

@@ -102,12 +102,14 @@ namespace Moreira_Miralles_and_Costa_2015
                                         env.LogFile = Path.Join(gurobiLogDirectory, $"gurobi_log-{output.FileName}.log");
                                         MoreiraMirallesCostaModel model = new(env, numberOfPeriods, instance, maximumMeanCycleTime, constraintController);
 
+                                        // If infeasible, writes ILP file
+                                        model.WriteILP(output, logger);
+
+                                        model = new(env, numberOfPeriods, instance, maximumMeanCycleTime, constraintController);
+
                                         model.WriteLP(output);
 
                                         model.Run();
-
-                                        // If infeasible, writes ILP file
-                                        //model.WriteILP(output, logger);
 
                                         model.WriteSolution(output);
                                         output.Write();

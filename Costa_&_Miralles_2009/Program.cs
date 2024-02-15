@@ -100,14 +100,18 @@ namespace Costa_and_Miralles_2009
                                             throw new Exception($"Output named {output.FileName} already exists. It's execution will be ignored.");
                                         }
                                         env.LogFile = Path.Join(gurobiLogDirectory, $"gurobi_log-{output.FileName}.log");
+
                                         CostaMirallesModel model = new(env, numberOfPeriods, instance, maximumMeanCycleTime, constraintController);
+
+                                        // If infeasible, writes ILP file
+                                        model.WriteILP(output, logger);
+
+                                        // Creates model again to avoid problems with compute IIS
+                                        model = new(env, numberOfPeriods, instance, maximumMeanCycleTime, constraintController);
 
                                         model.WriteLP(output);
 
                                         model.Run();
-
-                                        // If infeasible, writes ILP file
-                                        model.WriteILP(output, logger);
 
                                         model.WriteSolution(output);
                                         output.Write();
