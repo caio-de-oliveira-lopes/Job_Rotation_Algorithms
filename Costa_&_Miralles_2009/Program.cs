@@ -94,7 +94,7 @@ namespace Costa_and_Miralles_2009
                                     logger.AddLog($"Running with {constraintController} constraint(s).");
                                     try
                                     {
-                                        Output output = new(outputFileDirectory, instance.FileName, modelType, constraintController, numberOfPeriods);
+                                        Output output = new(outputFileDirectory, instance.FileName, maximumMeanCycleTime, modelType, constraintController, numberOfPeriods);
                                         if (File.Exists(output.GetFullPath()))
                                         {
                                             throw new Exception($"Output named {output.FileName} already exists. It's execution will be ignored.");

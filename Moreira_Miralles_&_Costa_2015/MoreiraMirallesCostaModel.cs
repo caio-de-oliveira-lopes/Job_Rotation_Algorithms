@@ -2,6 +2,7 @@
 using Base.Utils;
 using Gurobi;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Moreira_Miralles_and_Costa_2015
@@ -114,7 +115,7 @@ namespace Moreira_Miralles_and_Costa_2015
             CreatePeriodCycleTimeConstraint(); // 1.22
             CreateSumOfCycleTimeConstraint(); // 1.23
             CreateUVariableValueAssociation(); // 1.24
-            CreateUVariableValueAssociation2();
+            //CreateUVariableValueAssociation2();
             CreateLimitZVariablesConstraint(); // 1.25
             CreateWorkerShouldNotBeAssignedToInfeasibleTask(); // 1.26
 
@@ -399,7 +400,7 @@ namespace Moreira_Miralles_and_Costa_2015
                         List<int> executedTasks = new();
                         foreach (int task in Instance.GetTasksExecutedByWorker(worker))
                         {
-                            if (XVariables[(station, task, period)].X == 1d && YVariables[(station, worker, period)].X == 1d && UVariables[(worker, task, period)].X == 1d)
+                            if (XVariables[(station, task, period)].X == 1d && YVariables[(station, worker, period)].X == 1d)
                                 executedTasks.Add(task);
                         }
                         if (executedTasks.Any())
@@ -435,13 +436,6 @@ namespace Moreira_Miralles_and_Costa_2015
                     Solution.AddNewTasksExecutedByWorkerOnEachPeriod(period, worker, newTasks);
                 }
             }
-        }
-
-        public override void WriteSolution(Output output)
-        {
-            CompileSolution();
-            if (HasSolution())
-                output.SetSolution(Solution!);
         }
     }
 }

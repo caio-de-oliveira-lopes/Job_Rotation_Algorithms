@@ -396,12 +396,5 @@ namespace Costa_and_Miralles_2009
                 }
             }
         }
-
-        public override void WriteSolution(Output output)
-        {
-            CompileSolution();
-            if (HasSolution())
-                output.SetSolution(Solution!);
-        }
     }
 }

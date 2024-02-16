@@ -8,8 +8,8 @@ namespace Base.Domain
         public int Id { get; private set; }
         public Solution? Solution { get; private set; }
 
-        public Output(string fileDirectory, string fileName, Model.ModelType modelType, Model.ConstraintController constraintController, int numberOfPeriods)
-            : base(fileDirectory, $"output-{fileName}-{modelType}-{constraintController}-{numberOfPeriods}", ".json")
+        public Output(string fileDirectory, string fileName, int maximumMeanCycleTime, Model.ModelType modelType, Model.ConstraintController constraintController, int numberOfPeriods)
+            : base(fileDirectory, $"output-{fileName}-c{maximumMeanCycleTime}-{modelType}-{constraintController}-{numberOfPeriods}", ".json")
         {
             Id = InstanceCounter++;
         }

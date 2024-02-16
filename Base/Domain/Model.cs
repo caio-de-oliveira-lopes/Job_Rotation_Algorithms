@@ -48,7 +48,13 @@ namespace Base.Domain
 
         protected abstract void CompileSolution();
 
-        public abstract void WriteSolution(Output output);
+        public void WriteSolution(Output output)
+        {
+            WriteSOL(output);
+            CompileSolution();
+            if (HasSolution())
+                output.SetSolution(Solution!);
+        }
 
         protected void BuildModel()
         {
@@ -81,6 +87,11 @@ namespace Base.Domain
         public void WriteLP(Output output)
         {
             Write($"{output.GetFullPath().Replace(".json", ".lp")}");
+        }
+
+        public void WriteSOL(Output output)
+        {
+            Write($"{output.GetFullPath().Replace(".json", ".sol")}");
         }
     }
 }
