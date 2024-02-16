@@ -1,5 +1,6 @@
 ﻿using Base.Domain;
 using Gurobi;
+using System.Linq.Expressions;
 
 namespace Costa_and_Miralles_2009
 {
@@ -184,18 +185,20 @@ namespace Costa_and_Miralles_2009
                     {
                         foreach (int task2 in Instance.ImmediateFollowers[task1])
                         {
-                            List<int> workers = Instance.GetWorkersExecutionIntersection(new List<int>() { task1, task2 });
-                            foreach (int worker in workers)
+                            GRBLinExpr expression1 = new();
+                            GRBLinExpr expression2 = new();
+                            foreach (int stationS in Instance.GetWorkersList().Where(s => s >= stationK))
                             {
-                                GRBLinExpr expression1 = new();
-                                GRBLinExpr expression2 = new();
-                                foreach (int stationS in Instance.GetWorkersList().Where(s => s >= stationK))
+                                foreach (int worker in Instance.GetWorkersWhoCanExecuteTask(task1))
                                 {
                                     expression1.AddTerm(stationS, XVariables[(stationS, worker, task1, period)]);
+                                }
+                                foreach (int worker in Instance.GetWorkersWhoCanExecuteTask(task2))
+                                {
                                     expression2.AddTerm(stationS, XVariables[(stationS, worker, task2, period)]);
                                 }
-                                AddConstr(expression1, GRB.LESS_EQUAL, expression2, $"ImmediatePrecedenceConstraint_i({task1})_j({task2})_k({stationK})_w({worker})_t({period})");
                             }
+                            AddConstr(expression1, GRB.LESS_EQUAL, expression2, $"ImmediatePrecedenceConstraint_i({task1})_j({task2})_k({stationK})_t({period})");
                         }
                     }
                 }
