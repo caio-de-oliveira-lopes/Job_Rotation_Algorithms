@@ -1,6 +1,5 @@
 ﻿using Base.Domain;
 using Gurobi;
-using System.Linq.Expressions;
 
 namespace Costa_and_Miralles_2009
 {

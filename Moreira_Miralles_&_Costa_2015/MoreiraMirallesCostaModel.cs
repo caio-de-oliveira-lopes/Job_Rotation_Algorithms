@@ -1,9 +1,6 @@
 ﻿using Base.Domain;
 using Base.Utils;
 using Gurobi;
-using System.Linq.Expressions;
-using System.Reflection;
-using System.Threading.Tasks;
 
 namespace Moreira_Miralles_and_Costa_2015
 {
@@ -252,8 +249,8 @@ namespace Moreira_Miralles_and_Costa_2015
                     {
                         foreach (int period in GetPeriodsList())
                         {
-                            AddConstr(2d * UVariables[(worker, task, period)], GRB.LESS_EQUAL, 
-                                XVariables[(station, task, period)] + YVariables[(station, worker, period)], 
+                            AddConstr(2d * UVariables[(worker, task, period)], GRB.LESS_EQUAL,
+                                XVariables[(station, task, period)] + YVariables[(station, worker, period)],
                                 $"UVariableValueAssociation_s({station})_i({task})_w({worker})_t({period})");
                         }
                     }
@@ -305,7 +302,7 @@ namespace Moreira_Miralles_and_Costa_2015
                     {
                         foreach (int period in GetPeriodsList())
                         {
-                            AddConstr(YVariables[(station, worker, period)], GRB.LESS_EQUAL, 1 - XVariables[(station, task, period)], 
+                            AddConstr(YVariables[(station, worker, period)], GRB.LESS_EQUAL, 1 - XVariables[(station, task, period)],
                                 $"WorkerShouldNotBeAssignedToInfeasibleTask_s({station})_i({task})_w({worker})_t({period})");
                         }
                     }
@@ -363,7 +360,7 @@ namespace Moreira_Miralles_and_Costa_2015
                             {
                                 foreach (int period in GetPeriodsList())
                                 {
-                                    AddConstr(XVariables[(station, task1, period)] + XVariables[(station, task3, period)], GRB.LESS_EQUAL, 2 - YVariables[(station, worker, period)], 
+                                    AddConstr(XVariables[(station, task1, period)] + XVariables[(station, task3, period)], GRB.LESS_EQUAL, 2 - YVariables[(station, worker, period)],
                                         $"SecondExtraConstraint_s({station})_i({task1})_j({task2})_k({task3})_w({worker})_t({period})");
                                 }
                             }
@@ -383,7 +380,7 @@ namespace Moreira_Miralles_and_Costa_2015
         }
 
         protected override void CompileSolution()
-        {            
+        {
             int numberOfDistinctTasksExecuted = (int)ZVariables.Values.Select(x => x.X).Sum();
             Dictionary<(int, int), int> cycleTimes = new();
             Solution = new Solution(Instance.NumberOfTasks, Instance.Workers, NumberOfPeriods, numberOfDistinctTasksExecuted, ExecutionTimeMs);
