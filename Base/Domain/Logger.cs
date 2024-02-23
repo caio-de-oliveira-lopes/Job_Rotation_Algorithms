@@ -33,7 +33,7 @@ namespace Base.Domain
             return $"log_{string.Concat(formattedDateTimeAsArray)}";
         }
 
-        public override void Write()
+        public override void Write(params object[] objs)
         {
             Writer.WriteLogs(this);
         }

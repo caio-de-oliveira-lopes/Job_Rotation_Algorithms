@@ -13,7 +13,7 @@
             Extension = extension;
         }
 
-        public abstract void Write();
+        public abstract void Write(params object[] objs);
 
         public string GetFullPath()
         {

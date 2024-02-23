@@ -37,12 +37,12 @@ namespace Borba_and_Ritt_2014
                     Directory.CreateDirectory(gurobiLogDirectory);
 
                 int positionForCycleTime = args.ToList().IndexOf("-c") + 1;
-                if (!int.TryParse(args[positionForCycleTime], out int maximumMeanCycleTime))
+                if (!int.TryParse(args[positionForCycleTime], out int originalMaximumMeanCycleTime))
                 {
                     throw new Exception("Input for MaximumMeanCycleTime is missing or invalid.");
                 }
 
-                List<int> periods = new();
+                List<int?> periods = new();
                 int positionForPeriods = args.ToList().IndexOf("-t") + 1;
                 foreach (string numberOfPeriods in args[positionForPeriods..])
                 {
@@ -51,6 +51,23 @@ namespace Borba_and_Ritt_2014
                     else
                         break;
                 }
+
+                bool useNumberOfWorkers = args.Contains("-w");
+                if (useNumberOfWorkers)
+                    periods.Add(null);
+
+                List<double> percentages = new();
+                int positionForPercentages = args.ToList().IndexOf("-p") + 1;
+                foreach (string percentage in args[positionForPercentages..])
+                {
+                    if (int.TryParse(percentage, out int result))
+                        percentages.Add(1d + (result / 100d));
+                    else
+                        break;
+                }
+
+                if (!percentages.Any())
+                    percentages.Add(1d);
 
                 FileAttributes attr = File.GetAttributes(inputFileDirectory);
 
@@ -71,64 +88,69 @@ namespace Borba_and_Ritt_2014
                     MIPGap = 1e-3
                 };
 
-                foreach (string inputFilePath in inputFilesPaths)
+                foreach (var percentage in percentages)
                 {
-                    try
+                    int maximumMeanCycleTime = (int)Math.Floor(originalMaximumMeanCycleTime * percentage);
+                    foreach (int? originalNumberOfPeriods in periods)
                     {
-                        Input instance = Reader.ReadInputFile(inputFilePath);
-                        logger.AddLog($"Running input {instance.FileName}.");
-                        foreach (int numberOfPeriods in periods)
+                        foreach (string inputFilePath in inputFilesPaths)
                         {
-                            logger.AddLog($"Running with {numberOfPeriods} periods.");
-                            foreach (Model.ModelType modelType in models)
+                            try
                             {
-                                logger.AddLog($"Running {modelType}.");
-                                foreach (Model.ConstraintController constraintController in Enum.GetValues<Model.ConstraintController>())
+                                Input instance = Reader.ReadInputFile(inputFilePath);
+                                int numberOfPeriods = originalNumberOfPeriods ?? instance.Workers;
+                                logger.AddLog($"Running input {instance.FileName} with {numberOfPeriods} periods.");
+                                foreach (Model.ModelType modelType in models)
                                 {
-                                    // For now, we're ignoring the new constraints
-                                    if (constraintController == Model.ConstraintController.FirstExtraConstraint ||
-                                        constraintController == Model.ConstraintController.SecondExtraConstraint ||
-                                        constraintController == Model.ConstraintController.BothExtraConstraints)
-                                    { continue; }
-
-                                    logger.AddLog($"Running with {constraintController} constraint(s).");
-                                    try
+                                    logger.AddLog($"Running {modelType}.");
+                                    foreach (Model.ConstraintController constraintController in Enum.GetValues<Model.ConstraintController>())
                                     {
-                                        Output output = new(outputFileDirectory, instance.FileName, maximumMeanCycleTime, modelType, constraintController, numberOfPeriods);
-                                        if (File.Exists(output.GetFullPath()))
+                                        // For now, we're ignoring the new constraints
+                                        if (constraintController == Model.ConstraintController.FirstExtraConstraint ||
+                                            constraintController == Model.ConstraintController.SecondExtraConstraint ||
+                                            constraintController == Model.ConstraintController.BothExtraConstraints)
+                                        { continue; }
+
+                                        logger.AddLog($"Running with {constraintController} constraint(s).");
+                                        try
                                         {
-                                            throw new Exception($"Output named {output.FileName} already exists. It's execution will be ignored.");
+                                            Output output = new(outputFileDirectory, instance.FileName, maximumMeanCycleTime, modelType, constraintController, numberOfPeriods);
+                                            if (File.Exists(output.GetFullPath()))
+                                            {
+                                                throw new Exception($"Output named {output.FileName} already exists. It's execution will be ignored.");
+                                            }
+                                            env.LogFile = Path.Join(gurobiLogDirectory, $"gurobi_log-{output.FileName}.log");
+
+                                            BorbaRittModel model = new(env, numberOfPeriods, instance, maximumMeanCycleTime, constraintController);
+
+                                            // If infeasible, writes ILP file
+                                            model.WriteILP(output, logger);
+                                            model.Dispose();
+
+                                            // Creates model again to avoid problems with compute IIS
+                                            model = new(env, numberOfPeriods, instance, maximumMeanCycleTime, constraintController);
+
+                                            model.WriteLP(output);
+
+                                            model.Run();
+
+                                            model.WriteSolution(output);
+                                            output.Write(originalMaximumMeanCycleTime, maximumMeanCycleTime, percentage);
+                                            model.Dispose();
                                         }
-                                        env.LogFile = Path.Join(gurobiLogDirectory, $"gurobi_log-{output.FileName}.log");
-
-                                        BorbaRittModel model = new(env, numberOfPeriods, instance, maximumMeanCycleTime, constraintController);
-
-                                        // If infeasible, writes ILP file
-                                        model.WriteILP(output, logger);
-
-                                        // Creates model again to avoid problems with compute IIS
-                                        model = new(env, numberOfPeriods, instance, maximumMeanCycleTime, constraintController);
-
-                                        model.WriteLP(output);
-
-                                        model.Run();
-
-                                        model.WriteSolution(output);
-                                        output.Write();
-                                        model.Dispose();
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        logger.AddLog(ex);
+                                        catch (Exception ex)
+                                        {
+                                            logger.AddLog(ex);
+                                        }
                                     }
                                 }
+                                logger.AddLog($"Finished.");
+                            }
+                            catch (Exception ex)
+                            {
+                                logger.AddLog(ex);
                             }
                         }
-                        logger.AddLog($"Finished.");
-                    }
-                    catch (Exception ex)
-                    {
-                        logger.AddLog(ex);
                     }
                 }
                 env.Dispose();

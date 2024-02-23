@@ -97,7 +97,7 @@
             return Matrix[task, worker];
         }
 
-        public override void Write()
+        public override void Write(params object[] objs)
         {
             throw new NotImplementedException();
         }
