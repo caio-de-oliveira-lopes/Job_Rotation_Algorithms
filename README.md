@@ -2,7 +2,7 @@
 
 Here you can find the solutions ran for this research. The tables below group solutions according to the model used (Costa and Miralles Model (2009) and Borba and Ritt Model (2014)) and the instance family (heskia, roszieg, tonge or wee-mag). Each instance family has exactly 80 instances, being 320 instances in total.
 
-For each solution, there is an available file (you may inspect the file by clicking the link). The tables present the name of the instance, the number of periods, the maximum mean cycle time used, the number of workers, number of tasks and the objective function value.
+For each solution, there is an available file (you may inspect the file by clicking the link). The tables present the name of the instance, the number of periods, the maximum mean cycle time inputed, the number of workers, number of tasks and the objective function value.
 
 <details><summary>Heskia - Costa and Miralles Model (2009)</summary>
 <p>
