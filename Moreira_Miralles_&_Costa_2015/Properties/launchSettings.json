@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Moreira_Miralles_and_Costa_2015": {
+      "commandName": "Project",
+      "commandLineArgs": "\"C:\\Projetos\\Job_Rotation_Algorithms\\Instances\\alwabp\\1_hes\" \"C:\\Projetos\\Job_Rotation_Algorithms\\Outputs\" -c 400 -t 2"
+    }
+  }
+}

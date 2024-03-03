@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Borba_and_Ritt_2014": {
+      "commandName": "Project",
+      "commandLineArgs": "\"C:\\Projetos\\Job_Rotation_Algorithms\\Instances\\alwabp\\1_ros\" \"C:\\Projetos\\Job_Rotation_Algorithms\\Outputs\" -c 20 -t 2 -w -p 5 10 25 50"
+    }
+  }
+}
