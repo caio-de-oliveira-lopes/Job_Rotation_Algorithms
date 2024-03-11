@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Base\Base.csproj" />
+    <ProjectReference Include="..\Borba_&amp;_Ritt_2014\Borba_and_Ritt_2014.csproj" />
+    <ProjectReference Include="..\Costa_&amp;_Miralles_2009\Costa_and_Miralles_2009.csproj" />
+    <ProjectReference Include="..\Moreira_Miralles_&amp;_Costa_2015\Moreira_Miralles_and_Costa_2015.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="gurobi100.netstandard20">
+      <HintPath>..\..\..\gurobi1001\win64\lib\gurobi100.netstandard20.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
