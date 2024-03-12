@@ -1,5 +1,6 @@
 ﻿using Base.DataManagers;
 using Base.Domain;
+using Base.Utils;
 using Borba_and_Ritt_2014;
 using Costa_and_Miralles_2009;
 using Gurobi;
@@ -39,10 +40,16 @@ namespace Job_Rotation_Comparison
                 if (!Directory.Exists(gurobiLogDirectory))
                     Directory.CreateDirectory(gurobiLogDirectory);
 
-                int positionForCycleTime = args.ToList().IndexOf("-c") + 1;
-                if (!int.TryParse(args[positionForCycleTime], out int originalMaximumMeanCycleTime))
+                bool useRecommendedCycleTime = args.Contains("-rc");
+                int? originalMaximumMeanCycleTime = null;
+                if (!useRecommendedCycleTime)
                 {
-                    throw new Exception("Input for MaximumMeanCycleTime is missing or invalid.");
+                    int positionForCycleTime = args.ToList().IndexOf("-c") + 1;
+                    if (!int.TryParse(args[positionForCycleTime], out int maximumMeanCycleTime))
+                    {
+                        throw new Exception("Input for MaximumMeanCycleTime is missing or invalid.");
+                    }
+                    originalMaximumMeanCycleTime = maximumMeanCycleTime;
                 }
 
                 List<int?> periods = new();
@@ -93,7 +100,6 @@ namespace Job_Rotation_Comparison
 
                 foreach (var percentage in percentages)
                 {
-                    int maximumMeanCycleTime = (int)Math.Floor(originalMaximumMeanCycleTime * percentage);
                     foreach (int? originalNumberOfPeriods in periods)
                     {
                         foreach (string inputFilePath in inputFilesPaths)
@@ -101,6 +107,12 @@ namespace Job_Rotation_Comparison
                             try
                             {
                                 Input instance = Reader.ReadInputFile(inputFilePath);
+
+                                int cycleTime = useRecommendedCycleTime ? 
+                                    Util.GetRecommededMaximumMeanCycleTime(instance.FileName) : 
+                                    originalMaximumMeanCycleTime!.Value;
+
+                                int maximumMeanCycleTime = (int)Math.Floor(cycleTime * percentage);
                                 int numberOfPeriods = originalNumberOfPeriods ?? instance.Workers;
                                 logger.AddLog($"Running input {instance.FileName} with {numberOfPeriods} periods.");
                                 foreach (Model.ModelType modelType in models)

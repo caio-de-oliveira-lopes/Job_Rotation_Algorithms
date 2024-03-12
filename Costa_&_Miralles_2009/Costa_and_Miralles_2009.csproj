@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="gurobi100.netstandard20">
-      <HintPath>..\..\..\gurobi1001\win64\lib\gurobi100.netstandard20.dll</HintPath>
+    <Reference Include="gurobi110.netstandard20">
+      <HintPath>..\..\..\gurobi1101\win64\lib\gurobi110.netstandard20.dll</HintPath>
     </Reference>
   </ItemGroup>
 
