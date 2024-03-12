@@ -10,3 +10,4 @@ obj
 *.bin
 *.suo
 *.config
+/Publish/gurobi110.netstandard20.dll

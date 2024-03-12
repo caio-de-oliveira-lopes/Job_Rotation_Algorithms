@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Reference Include="gurobi110.netstandard20">
-      <HintPath>..\..\..\gurobi1101\win64\lib\gurobi110.netstandard20.dll</HintPath>
+      <HintPath>..\Publish\gurobi110.netstandard20.dll</HintPath>
     </Reference>
   </ItemGroup>
 
