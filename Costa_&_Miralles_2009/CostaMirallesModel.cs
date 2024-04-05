@@ -217,7 +217,7 @@ namespace Costa_and_Miralles_2009
                         {
                             expression.AddTerm(Instance.GetTaskTime(task, worker)!.Value, XVariables[(station, worker, task, period)]);
                         }
-                        AddConstr(expression, GRB.LESS_EQUAL, CVariables[period], $"PeriodCycleTimeConstraint_s({station})_t({period})");
+                        AddConstr(expression, GRB.LESS_EQUAL, CVariables[period], $"PeriodCycleTimeConstraint_s({station})_w({worker})_t({period})");
                     }
                 }
             }

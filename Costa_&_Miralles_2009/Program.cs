@@ -115,9 +115,9 @@ namespace Costa_and_Miralles_2009
                                         try
                                         {
                                             Output output = new(outputFileDirectory, instance.FileName, maximumMeanCycleTime, modelType, constraintController, numberOfPeriods);
-                                            if (File.Exists(output.GetFullPath()))
+                                            if (File.Exists(output.GetFullPath().Replace(".json", ".sol")))
                                             {
-                                                throw new Exception($"Output named {output.FileName} already exists. It's execution will be ignored.");
+                                                throw new Exception($"Output named {output.FileName.Replace(".json", ".sol")} already exists. It's execution will be ignored.");
                                             }
                                             env.LogFile = Path.Join(gurobiLogDirectory, $"gurobi_log-{output.FileName}.log");
 

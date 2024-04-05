@@ -2,7 +2,7 @@
   "profiles": {
     "Job_Rotation_Algorithms_Comparison": {
       "commandName": "Project",
-      "commandLineArgs": "\"C:\\Projetos\\Job_Rotation_Algorithms\\Instances\\alwabp\\1_ros\" \"C:\\Projetos\\Job_Rotation_Algorithms\\Outputs\" -rc -t 2 -w -p 5 10 25 50"
+      "commandLineArgs": "\"C:\\Projetos\\Job_Rotation_Algorithms\\Instances\\alwabp\" \"C:\\Projetos\\Job_Rotation_Algorithms\\Outputs\" -rc -w -p 5 10 25 50"
     }
   }
 }

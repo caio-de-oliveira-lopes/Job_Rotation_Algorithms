@@ -97,80 +97,104 @@ namespace Job_Rotation_Comparison
                     Threads = 1,
                     MIPGap = 1e-3
                 };
+                Model? model = null;
 
-                foreach (var percentage in percentages)
+                while (true)
                 {
-                    foreach (int? originalNumberOfPeriods in periods)
+                    foreach (var percentage in percentages)
                     {
-                        foreach (string inputFilePath in inputFilesPaths)
+                        foreach (int? originalNumberOfPeriods in periods)
                         {
-                            try
+                            foreach (string inputFilePath in inputFilesPaths)
                             {
-                                Input instance = Reader.ReadInputFile(inputFilePath);
-
-                                int cycleTime = useRecommendedCycleTime ? 
-                                    Util.GetRecommededMaximumMeanCycleTime(instance.FileName) : 
-                                    originalMaximumMeanCycleTime!.Value;
-
-                                int maximumMeanCycleTime = (int)Math.Floor(cycleTime * percentage);
-                                int numberOfPeriods = originalNumberOfPeriods ?? instance.Workers;
-                                logger.AddLog($"Running input {instance.FileName} with {numberOfPeriods} periods.");
-                                foreach (Model.ModelType modelType in models)
+                                try
                                 {
-                                    logger.AddLog($"Running {modelType}.");
-                                    foreach (Model.ConstraintController constraintController in Enum.GetValues<Model.ConstraintController>())
+                                    Input instance = Reader.ReadInputFile(inputFilePath);
+
+                                    int cycleTime = useRecommendedCycleTime ?
+                                        Util.GetRecommededMaximumMeanCycleTime(instance.FileName) :
+                                        originalMaximumMeanCycleTime!.Value;
+
+                                    int maximumMeanCycleTime = (int)Math.Floor(cycleTime * percentage);
+                                    int numberOfPeriods = originalNumberOfPeriods ?? instance.Workers;
+                                    logger.AddLog($"Running input {instance.FileName} with {numberOfPeriods} periods.");
+                                    foreach (Model.ModelType modelType in models)
                                     {
-                                        // For now, we're ignoring the new constraints
-                                        if (constraintController == Model.ConstraintController.FirstExtraConstraint ||
-                                            constraintController == Model.ConstraintController.SecondExtraConstraint ||
-                                            constraintController == Model.ConstraintController.BothExtraConstraints)
-                                        { continue; }
-
-                                        logger.AddLog($"Running with {constraintController} constraint(s).");
-                                        try
+                                        logger.AddLog($"Running {modelType}.");
+                                        foreach (Model.ConstraintController constraintController in Enum.GetValues<Model.ConstraintController>())
                                         {
-                                            Output output = new(outputFileDirectory, instance.FileName, maximumMeanCycleTime, modelType, constraintController, numberOfPeriods);
-                                            if (File.Exists(output.GetFullPath()))
+                                            // For now, we're ignoring the new constraints
+                                            if (constraintController == Model.ConstraintController.FirstExtraConstraint ||
+                                                constraintController == Model.ConstraintController.SecondExtraConstraint ||
+                                                constraintController == Model.ConstraintController.BothExtraConstraints)
+                                            { continue; }
+
+                                            logger.AddLog($"Running with {constraintController} constraint(s).");
+                                            try
                                             {
-                                                throw new Exception($"Output named {output.FileName} already exists. It's execution will be ignored.");
+                                                Output output = new(outputFileDirectory, instance.FileName, maximumMeanCycleTime, modelType, constraintController, numberOfPeriods);
+
+                                                string solutionFileName = output.GetFullPath().Replace(".json", ".sol");
+                                                string gurobiJsonOutputFileName = solutionFileName.Replace(".sol", "-GUROBI.json");
+                                                if (File.Exists(solutionFileName))
+                                                {
+                                                    /*
+                                                    model = CreateModelByType(modelType, env, numberOfPeriods, instance, maximumMeanCycleTime, constraintController) ??
+                                                        throw new Exception($"Error when creating model {modelType} for input {instance.FileName}, it will be ignored.");
+
+                                                    model.Update();
+                                                    model.Read(solutionFileName);
+                                                    env.TimeLimit = 10;
+                                                    model.Optimize();
+                                                    env.TimeLimit = 3600;
+
+                                                    if (!File.Exists(gurobiJsonOutputFileName))
+                                                        Writer.WriteJSON(gurobiJsonOutputFileName, model.GetJSONSolution());*/
+
+                                                    throw new Exception($"Output named {output.FileName.Replace(".json", ".sol")} already exists. It's execution will be ignored.");
+                                                }
+                                                env.LogFile = Path.Join(gurobiLogDirectory, $"gurobi_log-{output.FileName}.log");
+
+                                                model = CreateModelByType(modelType, env, numberOfPeriods, instance, maximumMeanCycleTime, constraintController) ?? 
+                                                    throw new Exception($"Error when creating model {modelType} for input {instance.FileName}, it will be ignored.");
+
+                                                // If infeasible, writes ILP file
+                                                //model.WriteILP(output, logger);
+                                                //model.Dispose();
+
+                                                // Creates model again to avoid problems with compute IIS
+                                                //model = CreateModelByType(modelType, env, numberOfPeriods, instance, maximumMeanCycleTime, constraintController) ??
+                                                //    throw new Exception($"Error when creating model {modelType} for input {instance.FileName}, it will be ignored.");
+
+                                                model.WriteLP(output);
+
+                                                model.Run();
+
+                                                model.WriteSolution(output);
+                                                output.Write(cycleTime, maximumMeanCycleTime, percentage);
+                                                Writer.WriteJSON(gurobiJsonOutputFileName, model.GetJSONSolution());
+
+                                                model.Dispose();
                                             }
-                                            env.LogFile = Path.Join(gurobiLogDirectory, $"gurobi_log-{output.FileName}.log");
-
-                                            Model? model = CreateModelByType(modelType, env, numberOfPeriods, instance, maximumMeanCycleTime, constraintController) ?? 
-                                                throw new Exception($"Error when creating model {modelType} for input {instance.FileName}, it will be ignored.");
-
-                                            // If infeasible, writes ILP file
-                                            model.WriteILP(output, logger);
-                                            model.Dispose();
-
-                                            // Creates model again to avoid problems with compute IIS
-                                            model = CreateModelByType(modelType, env, numberOfPeriods, instance, maximumMeanCycleTime, constraintController) ??
-                                                throw new Exception($"Error when creating model {modelType} for input {instance.FileName}, it will be ignored.");
-
-                                            model.WriteLP(output);
-
-                                            model.Run();
-
-                                            model.WriteSolution(output);
-                                            output.Write(originalMaximumMeanCycleTime, maximumMeanCycleTime, percentage);
-                                            model.Dispose();
-                                        }
-                                        catch (Exception ex)
-                                        {
-                                            logger.AddLog(ex);
+                                            catch (Exception ex)
+                                            {
+                                                logger.AddLog(ex);
+                                                model?.Dispose();
+                                            }
                                         }
                                     }
+                                    logger.AddLog($"Finished.");
                                 }
-                                logger.AddLog($"Finished.");
-                            }
-                            catch (Exception ex)
-                            {
-                                logger.AddLog(ex);
+                                catch (Exception ex)
+                                {
+                                    logger.AddLog(ex);
+                                    model?.Dispose();
+                                }
                             }
                         }
                     }
+                    env.Dispose();
                 }
-                env.Dispose();
             }
             catch (Exception ex)
             {

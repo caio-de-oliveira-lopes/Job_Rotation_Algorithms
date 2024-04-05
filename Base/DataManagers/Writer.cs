@@ -15,6 +15,16 @@ namespace Base.DataManagers
             Console.WriteLine($"\nFinished Writing Output For Instance {output.FileName}.\n");
         }
 
+        public static void WriteJSON(string filePath, string jsonString)
+        {
+            JsonSerializerOptions options = new() { WriteIndented = true };
+            string json = JsonSerializer.Serialize(jsonString, options);
+
+            File.WriteAllText(filePath, json);
+
+            Console.WriteLine($"\nFinished Writing Gurobi JSON Output.\n");
+        }
+
         public static void WriteLogs(Logger logger)
         {
             try
