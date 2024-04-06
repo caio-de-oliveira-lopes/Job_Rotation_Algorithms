@@ -1,0 +1,88 @@
+
+Gurobi 11.0.1 (win64) logging started Wed Mar 13 20:00:52 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-36_ros-c30-CostaMirallesModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+
+Gurobi 11.0.1 (win64) logging started Thu Mar 14 07:59:08 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-36_ros-c30-CostaMirallesModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+
+Gurobi 11.0.1 (win64) logging started Fri Mar 15 00:36:36 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-36_ros-c30-CostaMirallesModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+
+Gurobi 11.0.1 (win64) logging started Fri Mar 15 08:42:08 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-36_ros-c30-CostaMirallesModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+WLS license 901039 - registered to Bitka Analytics
+Optimize a model with 418 rows, 817 columns and 6361 nonzeros
+Model fingerprint: 0x5f141881
+Variable types: 2 continuous, 815 integer (815 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 3e+01]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+01]
+  RHS range        [1e+00, 6e+01]
+Presolve removed 41 rows and 127 columns
+Presolve time: 0.02s
+Presolved: 377 rows, 690 columns, 4947 nonzeros
+Variable types: 0 continuous, 690 integer (689 binary)
+
+Root relaxation: objective 5.000000e+01, 400 iterations, 0.02 seconds (0.01 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0   50.00000    0    9          -   50.00000      -     -    1s
+     0     0   50.00000    0  174          -   50.00000      -     -    1s
+     0     0   50.00000    0  159          -   50.00000      -     -    1s
+     0     0   50.00000    0   27          -   50.00000      -     -    1s
+     0     0   50.00000    0   52          -   50.00000      -     -    1s
+     0     0   50.00000    0   19          -   50.00000      -     -    1s
+     0     0   50.00000    0   40          -   50.00000      -     -    1s
+     0     0   50.00000    0   31          -   50.00000      -     -    1s
+     0     0   50.00000    0   30          -   50.00000      -     -    1s
+     0     2   50.00000    0   23          -   50.00000      -     -    1s
+  1041   120   48.96789   12  123          -   50.00000      -   118    5s
+* 1185   126              17      36.0000000   50.00000  38.9%   117    5s
+* 1188   123              17      37.0000000   50.00000  35.1%   117    5s
+
+Cutting planes:
+  Gomory: 1
+  Cover: 820
+  Implied bound: 40
+  Clique: 80
+  MIR: 49
+  StrongCG: 6
+  GUB cover: 17
+  Inf proof: 5
+  Zero half: 7
+  RLT: 6
+
+Explored 1557 nodes (171323 simplex iterations) in 6.22 seconds (5.47 work units)
+Thread count was 1 (of 8 available processors)
+
+Solution count 2: 37 36 
+
+Optimal solution found (tolerance 1.00e-03)
+Best objective 3.700000000000e+01, best bound 3.700000000000e+01, gap 0.0000%

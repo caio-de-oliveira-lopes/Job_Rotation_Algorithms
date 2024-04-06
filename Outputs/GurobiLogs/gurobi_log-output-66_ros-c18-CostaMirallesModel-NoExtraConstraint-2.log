@@ -1,0 +1,120 @@
+
+Gurobi 11.0.1 (win64) logging started Thu Mar 14 08:02:10 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-66_ros-c18-CostaMirallesModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+
+Gurobi 11.0.1 (win64) logging started Fri Mar 15 00:39:37 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-66_ros-c18-CostaMirallesModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+
+Gurobi 11.0.1 (win64) logging started Sat Mar 16 12:25:51 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-66_ros-c18-CostaMirallesModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+
+Gurobi 11.0.1 (win64) logging started Sat Mar 16 22:34:55 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-66_ros-c18-CostaMirallesModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+
+Gurobi 11.0.1 (win64) logging started Sun Mar 17 02:10:43 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-66_ros-c18-CostaMirallesModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+
+Gurobi 11.0.1 (win64) logging started Mon Mar 18 01:42:18 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-66_ros-c18-CostaMirallesModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+WLS license 901039 - registered to Bitka Analytics
+Optimize a model with 687 rows, 1842 columns and 19026 nonzeros
+Model fingerprint: 0x13e346aa
+Variable types: 2 continuous, 1840 integer (1840 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 3e+01]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 4e+01]
+  RHS range        [1e+00, 4e+01]
+Presolve removed 101 rows and 798 columns
+Presolve time: 0.13s
+Presolved: 586 rows, 1044 columns, 8264 nonzeros
+Variable types: 0 continuous, 1044 integer (1029 binary)
+
+Root relaxation: objective 5.000000e+01, 701 iterations, 0.02 seconds (0.01 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0   50.00000    0   26          -   50.00000      -     -    0s
+     0     0   50.00000    0  175          -   50.00000      -     -    0s
+     0     0   50.00000    0  167          -   50.00000      -     -    0s
+     0     0   50.00000    0  139          -   50.00000      -     -    0s
+     0     0   50.00000    0   36          -   50.00000      -     -    0s
+     0     0   50.00000    0   42          -   50.00000      -     -    0s
+     0     0   50.00000    0   69          -   50.00000      -     -    0s
+     0     0   50.00000    0  148          -   50.00000      -     -    0s
+     0     0   50.00000    0  120          -   50.00000      -     -    0s
+     0     0   50.00000    0   85          -   50.00000      -     -    0s
+     0     2   50.00000    0   47          -   50.00000      -     -    0s
+  1019   321   49.00000   18  165          -   50.00000      -  55.2    5s
+* 1367   246              35      37.0000000   50.00000  35.1%  51.1    9s
+H 1368   229                      40.0000000   50.00000  25.0%  51.0    9s
+H 1395   192                      41.0000000   50.00000  22.0%  53.0    9s
+  1442   189   50.00000   29   87   41.00000   50.00000  22.0%  55.4   10s
+H 1447   171                      42.0000000   50.00000  19.0%  55.5   10s
+* 1879    82              36      43.0000000   50.00000  16.3%  67.0   13s
+  2136    73   50.00000   26  130   43.00000   50.00000  16.3%  74.7   15s
+  2571    81   45.45324   40  101   43.00000   50.00000  16.3%  85.5   20s
+  2861    75   50.00000   17  196   43.00000   50.00000  16.3%  92.4   25s
+  3148    82 infeasible   27        43.00000   50.00000  16.3%  98.2   30s
+  3539    76   50.00000   24  104   43.00000   50.00000  16.3%   105   35s
+  3872    83   50.00000   20  184   43.00000   50.00000  16.3%   112   40s
+  4314    87 infeasible   27        43.00000   50.00000  16.3%   116   45s
+  4779    91   50.00000   20  193   43.00000   50.00000  16.3%   118   50s
+  5063    88 infeasible   29        43.00000   50.00000  16.3%   121   55s
+  5587    93 infeasible   38        43.00000   50.00000  16.3%   122   60s
+  6157   115   50.00000   29  118   43.00000   50.00000  16.3%   123   65s
+  6739    26     cutoff   30        43.00000   46.00000  6.98%   122   70s
+
+Cutting planes:
+  Cover: 32
+  Clique: 41
+  MIR: 3
+  Flow cover: 12
+  GUB cover: 4
+  Zero half: 1
+  RLT: 3
+
+Explored 6908 nodes (896223 simplex iterations) in 70.45 seconds (64.60 work units)
+Thread count was 1 (of 8 available processors)
+
+Solution count 5: 43 42 41 ... 37
+
+Optimal solution found (tolerance 1.00e-03)
+Best objective 4.300000000000e+01, best bound 4.300000000000e+01, gap 0.0000%

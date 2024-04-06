@@ -1,0 +1,80 @@
+
+Gurobi 11.0.1 (win64) logging started Wed Mar 13 19:49:29 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-23_ros-c27-BorbaRittModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+
+Gurobi 11.0.1 (win64) logging started Thu Mar 14 03:57:50 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-23_ros-c27-BorbaRittModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+WLS license 901039 - registered to Bitka Analytics
+Optimize a model with 949 rows, 320 columns and 3060 nonzeros
+Model fingerprint: 0x445b5c07
+Variable types: 2 continuous, 318 integer (318 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 2e+01]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 5e+01]
+  RHS range        [1e+00, 5e+01]
+Presolve removed 1 rows and 1 columns
+Presolve time: 0.02s
+Presolved: 948 rows, 319 columns, 3058 nonzeros
+Variable types: 0 continuous, 319 integer (318 binary)
+
+Root relaxation: objective 5.000000e+01, 576 iterations, 0.02 seconds (0.01 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0   50.00000    0  103          -   50.00000      -     -    0s
+     0     0   50.00000    0   96          -   50.00000      -     -    0s
+     0     0   50.00000    0  121          -   50.00000      -     -    0s
+     0     0   50.00000    0  119          -   50.00000      -     -    0s
+     0     0   50.00000    0  107          -   50.00000      -     -    0s
+     0     0   50.00000    0  107          -   50.00000      -     -    0s
+     0     0   50.00000    0   95          -   50.00000      -     -    0s
+     0     0   50.00000    0  100          -   50.00000      -     -    0s
+     0     0   50.00000    0   84          -   50.00000      -     -    0s
+     0     0   50.00000    0   98          -   50.00000      -     -    0s
+     0     0   50.00000    0   93          -   50.00000      -     -    0s
+     0     0   50.00000    0  106          -   50.00000      -     -    0s
+     0     0   50.00000    0   97          -   50.00000      -     -    0s
+     0     0   50.00000    0   97          -   50.00000      -     -    0s
+     0     2   50.00000    0   97          -   50.00000      -     -    0s
+H 1114   338                      36.0000000   50.00000  38.9%  26.4    3s
+H 1114   321                      37.0000000   50.00000  35.1%  26.4    3s
+  1548   284   49.41691   20   92   37.00000   50.00000  35.1%  51.1    5s
+H 1569   256                      38.0000000   50.00000  31.6%  51.3    5s
+H 2060   243                      41.0000000   50.00000  22.0%  66.8    6s
+H 2263   261                      42.0000000   50.00000  19.0%  70.9    7s
+  2762   333   47.39589   23  118   42.00000   50.00000  19.0%  76.5   10s
+  3427   378     cutoff   19        42.00000   50.00000  19.0%  81.2   15s
+* 4175   388              33      43.0000000   50.00000  16.3%  86.6   18s
+  4531   375   50.00000   18   81   43.00000   50.00000  16.3%  88.2   20s
+  5717   378 infeasible   25        43.00000   50.00000  16.3%  91.0   25s
+  6829   322     cutoff   25        43.00000   50.00000  16.3%  94.6   30s
+
+Cutting planes:
+  Gomory: 1
+  Flow cover: 2
+  Inf proof: 1
+  Zero half: 14
+  RLT: 11
+  BQP: 3
+
+Explored 8455 nodes (759200 simplex iterations) in 33.25 seconds (34.81 work units)
+Thread count was 1 (of 8 available processors)
+
+Solution count 6: 43 42 41 ... 36
+
+Optimal solution found (tolerance 1.00e-03)
+Best objective 4.300000000000e+01, best bound 4.300000000000e+01, gap 0.0000%

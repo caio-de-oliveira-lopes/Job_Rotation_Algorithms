@@ -1,0 +1,71 @@
+
+Gurobi 11.0.1 (win64) logging started Wed Mar 20 00:57:47 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-1_hes-c98-BorbaRittModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+WLS license 901039 - registered to Bitka Analytics
+Optimize a model with 1024 rows, 329 columns and 3279 nonzeros
+Model fingerprint: 0xf7e48d14
+Variable types: 2 continuous, 327 integer (327 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+02]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 2e+02]
+  RHS range        [1e+00, 2e+02]
+Presolve removed 136 rows and 4 columns
+Presolve time: 0.00s
+Presolved: 888 rows, 325 columns, 2862 nonzeros
+Variable types: 0 continuous, 325 integer (324 binary)
+
+Root relaxation: objective 5.035423e+01, 473 iterations, 0.02 seconds (0.01 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0   50.35423    0   94          -   50.35423      -     -    0s
+     0     0   50.20000    0  114          -   50.20000      -     -    0s
+     0     0   50.00000    0  125          -   50.00000      -     -    0s
+     0     0   50.00000    0  123          -   50.00000      -     -    0s
+     0     0   50.00000    0  149          -   50.00000      -     -    0s
+     0     0   49.99497    0  111          -   49.99497      -     -    0s
+     0     0   49.86145    0  107          -   49.86145      -     -    0s
+     0     0   49.85510    0  117          -   49.85510      -     -    0s
+     0     0   49.84941    0  122          -   49.84941      -     -    0s
+     0     0   49.84941    0  123          -   49.84941      -     -    0s
+     0     0   49.84941    0  127          -   49.84941      -     -    0s
+     0     0   49.84941    0  132          -   49.84941      -     -    0s
+     0     0   49.83125    0  110          -   49.83125      -     -    0s
+     0     0   49.79969    0  137          -   49.79969      -     -    0s
+     0     0   49.74392    0  123          -   49.74392      -     -    0s
+     0     0   49.73483    0  121          -   49.73483      -     -    0s
+     0     0   49.73483    0  121          -   49.73483      -     -    0s
+     0     0   49.73483    0  121          -   49.73483      -     -    0s
+     0     0   49.73483    0  121          -   49.73483      -     -    0s
+     0     0   49.73483    0  125          -   49.73483      -     -    0s
+     0     0   49.73483    0  125          -   49.73483      -     -    0s
+     0     0   49.73483    0  129          -   49.73483      -     -    0s
+     0     0   49.71924    0  112          -   49.71924      -     -    0s
+     0     2   49.68673    0  112          -   49.68673      -     -    0s
+H  517   173                      44.0000000   48.79449  10.9%  40.9    0s
+
+Cutting planes:
+  Gomory: 3
+  Cover: 48
+  MIR: 11
+  StrongCG: 4
+  Inf proof: 15
+  Zero half: 20
+  RLT: 22
+  BQP: 1
+
+Explored 2278 nodes (80954 simplex iterations) in 3.24 seconds (3.34 work units)
+Thread count was 1 (of 8 available processors)
+
+Solution count 1: 44 
+
+Optimal solution found (tolerance 1.00e-03)
+Best objective 4.400000000000e+01, best bound 4.400000000000e+01, gap 0.0000%

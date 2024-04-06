@@ -1,0 +1,193 @@
+{
+  "NumberOfTasks": 25,
+  "NumberOfWorkers": 6,
+  "NumberOfPeriods": 2,
+  "OriginalMaximumMeanCycleTime": 16,
+  "MaximumMeanCycleTime": 17,
+  "PercentageAppliedOverOriginalMaximumMeanCycleTime": 1.1,
+  "MeanCycleTime": 14.666666666666666,
+  "ExecutionTimeMs": 263188,
+  "OF": 48,
+  "Assignment": {
+    "Period 0": {
+      "Station 0": {
+        "Worker 0": [
+          0,
+          1,
+          2
+        ]
+      },
+      "Station 1": {
+        "Worker 5": [
+          3,
+          7,
+          8
+        ]
+      },
+      "Station 2": {
+        "Worker 1": [
+          4,
+          5
+        ]
+      },
+      "Station 3": {
+        "Worker 3": [
+          6,
+          10,
+          12,
+          13
+        ]
+      },
+      "Station 4": {
+        "Worker 2": [
+          11,
+          14,
+          15,
+          16,
+          17,
+          19,
+          20,
+          22
+        ]
+      },
+      "Station 5": {
+        "Worker 4": [
+          9,
+          18,
+          21,
+          23,
+          24
+        ]
+      }
+    },
+    "Period 1": {
+      "Station 0": {
+        "Worker 5": [
+          0,
+          1
+        ]
+      },
+      "Station 1": {
+        "Worker 1": [
+          2,
+          3,
+          4
+        ]
+      },
+      "Station 2": {
+        "Worker 2": [
+          5,
+          6,
+          7,
+          8
+        ]
+      },
+      "Station 3": {
+        "Worker 4": [
+          10,
+          11,
+          12,
+          14,
+          16
+        ]
+      },
+      "Station 4": {
+        "Worker 3": [
+          13,
+          18,
+          19,
+          20,
+          21,
+          23
+        ]
+      },
+      "Station 5": {
+        "Worker 0": [
+          9,
+          15,
+          17,
+          22,
+          24
+        ]
+      }
+    }
+  },
+  "NewTasksExecutedByWorkerOnEachPeriod": {
+    "Period 0": {
+      "Worker 0": [
+        0,
+        1,
+        2
+      ],
+      "Worker 1": [
+        4,
+        5
+      ],
+      "Worker 2": [
+        11,
+        14,
+        15,
+        16,
+        17,
+        19,
+        20,
+        22
+      ],
+      "Worker 3": [
+        6,
+        10,
+        12,
+        13
+      ],
+      "Worker 4": [
+        9,
+        18,
+        21,
+        23,
+        24
+      ],
+      "Worker 5": [
+        3,
+        7,
+        8
+      ]
+    },
+    "Period 1": {
+      "Worker 0": [
+        9,
+        15,
+        17,
+        22,
+        24
+      ],
+      "Worker 1": [
+        2,
+        3
+      ],
+      "Worker 2": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "Worker 3": [
+        18,
+        19,
+        20,
+        21,
+        23
+      ],
+      "Worker 4": [
+        10,
+        11,
+        12,
+        14,
+        16
+      ],
+      "Worker 5": [
+        0,
+        1
+      ]
+    }
+  }
+}

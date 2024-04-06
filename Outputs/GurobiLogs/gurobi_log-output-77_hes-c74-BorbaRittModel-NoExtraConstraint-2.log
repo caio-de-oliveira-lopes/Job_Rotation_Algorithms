@@ -1,0 +1,78 @@
+
+Gurobi 11.0.1 (win64) logging started Fri Mar 29 11:03:40 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-77_hes-c74-BorbaRittModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+WLS license 901039 - registered to Bitka Analytics
+Optimize a model with 3209 rows, 608 columns and 10084 nonzeros
+Model fingerprint: 0x1aac418e
+Variable types: 2 continuous, 606 integer (606 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+02]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+02]
+  RHS range        [1e+00, 1e+02]
+Presolve removed 870 rows and 70 columns
+Presolve time: 0.03s
+Presolved: 2339 rows, 538 columns, 7383 nonzeros
+Variable types: 0 continuous, 538 integer (537 binary)
+
+Root relaxation: objective 5.600000e+01, 823 iterations, 0.05 seconds (0.04 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0   56.00000    0   93          -   56.00000      -     -    0s
+     0     0   56.00000    0  153          -   56.00000      -     -    0s
+     0     0   56.00000    0  118          -   56.00000      -     -    0s
+     0     0   56.00000    0  128          -   56.00000      -     -    0s
+     0     0   56.00000    0  140          -   56.00000      -     -    0s
+     0     0   56.00000    0  128          -   56.00000      -     -    0s
+     0     0   56.00000    0   87          -   56.00000      -     -    0s
+     0     0   56.00000    0   83          -   56.00000      -     -    0s
+     0     0   56.00000    0   90          -   56.00000      -     -    0s
+     0     0   56.00000    0   79          -   56.00000      -     -    0s
+     0     0   56.00000    0  109          -   56.00000      -     -    0s
+     0     0   56.00000    0   71          -   56.00000      -     -    0s
+     0     2   56.00000    0   69          -   56.00000      -     -    0s
+   729   293   56.00000    9  152          -   56.00000      -   108    5s
+H  914   339                      35.0000000   56.00000  60.0%   117    6s
+H  915   323                      39.0000000   56.00000  43.6%   117    6s
+H  936   319                      48.0000000   56.00000  16.7%   114    8s
+H  964   317                      49.0000000   56.00000  14.3%   130    9s
+  1007   322   56.00000   19  188   49.00000   56.00000  14.3%   134   10s
+  1265   244 infeasible   16        49.00000   56.00000  14.3%   166   15s
+  1483   176 infeasible   21        49.00000   56.00000  14.3%   193   20s
+H 1708    76                      50.0000000   56.00000  12.0%   213   24s
+  1710    76   54.99014   22  133   50.00000   56.00000  12.0%   213   25s
+H 1984    70                      51.0000000   56.00000  9.80%   219   29s
+  2021    67     cutoff   29        51.00000   56.00000  9.80%   220   30s
+  2302   106   54.93765   25  141   51.00000   56.00000  9.80%   225   35s
+H 2343    98                      52.0000000   56.00000  7.69%   227   35s
+  2513    88   55.00000   16  158   52.00000   56.00000  7.69%   233   40s
+  2682    85   55.90825   17  135   52.00000   56.00000  7.69%   242   45s
+  2846    99   55.22857   26  210   52.00000   56.00000  7.69%   244   50s
+  2919   111 infeasible   28        52.00000   56.00000  7.69%   247   55s
+  3112   119   55.00000   24  175   52.00000   56.00000  7.69%   250   60s
+  3276   129   55.97075   22  198   52.00000   56.00000  7.69%   254   65s
+  3487   140     cutoff   24        52.00000   56.00000  7.69%   257   70s
+  4015    73   53.86911   25  189   52.00000   54.23948  4.31%   250   75s
+
+Cutting planes:
+  Clique: 3
+  MIR: 4
+  Flow cover: 1
+  RLT: 4
+  BQP: 2
+
+Explored 4316 nodes (1045963 simplex iterations) in 76.21 seconds (89.88 work units)
+Thread count was 1 (of 8 available processors)
+
+Solution count 7: 52 51 50 ... 35
+
+Optimal solution found (tolerance 1.00e-03)
+Best objective 5.200000000000e+01, best bound 5.200000000000e+01, gap 0.0000%

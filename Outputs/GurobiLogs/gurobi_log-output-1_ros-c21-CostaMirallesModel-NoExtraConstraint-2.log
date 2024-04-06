@@ -1,0 +1,58 @@
+
+Gurobi 11.0.1 (win64) logging started Tue Mar 12 16:14:28 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-1_ros-c21-CostaMirallesModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+WLS license 901038 - registered to Bitka Analytics
+Optimize a model with 419 rows, 826 columns and 6450 nonzeros
+Model fingerprint: 0x0d062dda
+Variable types: 2 continuous, 824 integer (824 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 3e+01]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 4e+01]
+  RHS range        [1e+00, 4e+01]
+Presolve removed 55 rows and 165 columns
+Presolve time: 0.03s
+Presolved: 364 rows, 661 columns, 4624 nonzeros
+Variable types: 0 continuous, 661 integer (660 binary)
+
+Root relaxation: objective 5.000000e+01, 327 iterations, 0.01 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0   50.00000    0   11          -   50.00000      -     -    0s
+     0     0   50.00000    0  151          -   50.00000      -     -    0s
+     0     0   50.00000    0  145          -   50.00000      -     -    0s
+     0     0   50.00000    0   28          -   50.00000      -     -    0s
+     0     0   50.00000    0   77          -   50.00000      -     -    0s
+     0     0   50.00000    0   65          -   50.00000      -     -    0s
+     0     0   50.00000    0   65          -   50.00000      -     -    0s
+     0     2   50.00000    0   65          -   50.00000      -     -    0s
+*  401    60              19      46.0000000   50.00000  8.70%  50.8    1s
+H  774    50                      49.0000000   50.00000  2.04%  67.4    1s
+
+Cutting planes:
+  Cover: 18
+  Implied bound: 2
+  Clique: 23
+  StrongCG: 1
+  Flow cover: 2
+  GUB cover: 2
+  RLT: 2
+  BQP: 1
+  PSD: 1
+
+Explored 808 nodes (68710 simplex iterations) in 2.86 seconds (2.92 work units)
+Thread count was 1 (of 8 available processors)
+
+Solution count 2: 49 46 
+
+Optimal solution found (tolerance 1.00e-03)
+Best objective 4.900000000000e+01, best bound 4.900000000000e+01, gap 0.0000%
+Warning: parameter changes on this environment will not affect existing models.

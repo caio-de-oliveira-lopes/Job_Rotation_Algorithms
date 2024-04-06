@@ -1,0 +1,52 @@
+
+Gurobi 11.0.1 (win64) logging started Sun Mar 24 02:34:11 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-48_hes-c45-CostaMirallesModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+WLS license 901039 - registered to Bitka Analytics
+Optimize a model with 943 rows, 2800 columns and 33544 nonzeros
+Model fingerprint: 0xbd1fbd0c
+Variable types: 2 continuous, 2798 integer (2798 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+02]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 9e+01]
+  RHS range        [1e+00, 9e+01]
+Presolve removed 393 rows and 1365 columns
+Presolve time: 0.20s
+Presolved: 550 rows, 1435 columns, 10683 nonzeros
+Variable types: 0 continuous, 1435 integer (1434 binary)
+
+Root relaxation: objective 5.400000e+01, 469 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0   54.00000    0   39          -   54.00000      -     -    0s
+     0     0   54.00000    0   37          -   54.00000      -     -    0s
+     0     0   54.00000    0  174          -   54.00000      -     -    0s
+     0     0   54.00000    0  175          -   54.00000      -     -    0s
+     0     0   54.00000    0  153          -   54.00000      -     -    0s
+     0     0   54.00000    0   56          -   54.00000      -     -    0s
+     0     0   54.00000    0  122          -   54.00000      -     -    0s
+     0     0   54.00000    0  117          -   54.00000      -     -    0s
+     0     0   54.00000    0   43          -   54.00000      -     -    0s
+     0     0   54.00000    0  105          -   54.00000      -     -    0s
+     0     0   54.00000    0   59          -   54.00000      -     -    0s
+     0     0   54.00000    0   46          -   54.00000      -     -    0s
+     0     2   54.00000    0   46          -   54.00000      -     -    0s
+* 1192   295              37      42.0000000   53.00000  26.2%  15.1    4s
+  1223   300   49.00000   30   12   42.00000   53.00000  26.2%  17.0    5s
+H 1224   268                      49.0000000   53.00000  8.16%  16.9    5s
+
+Explored 1248 nodes (83832 simplex iterations) in 5.23 seconds (5.09 work units)
+Thread count was 1 (of 8 available processors)
+
+Solution count 2: 49 42 
+
+Optimal solution found (tolerance 1.00e-03)
+Best objective 4.900000000000e+01, best bound 4.900000000000e+01, gap 0.0000%

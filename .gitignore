@@ -11,3 +11,5 @@ obj
 *.suo
 *.config
 /Publish/gurobi110.netstandard20.dll
+*.lp
+/Outputs/ExecutionLogs

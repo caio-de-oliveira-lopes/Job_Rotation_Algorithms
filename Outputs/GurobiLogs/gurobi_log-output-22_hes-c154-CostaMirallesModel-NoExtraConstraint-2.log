@@ -1,0 +1,70 @@
+
+Gurobi 11.0.1 (win64) logging started Thu Mar 21 05:03:01 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-22_hes-c154-CostaMirallesModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+WLS license 901039 - registered to Bitka Analytics
+Optimize a model with 481 rows, 952 columns and 7720 nonzeros
+Model fingerprint: 0x9ac154ee
+Variable types: 2 continuous, 950 integer (950 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 2e+02]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 3e+02]
+  RHS range        [1e+00, 3e+02]
+Presolve removed 161 rows and 119 columns
+Presolve time: 0.05s
+Presolved: 320 rows, 833 columns, 4870 nonzeros
+Variable types: 0 continuous, 833 integer (832 binary)
+
+Root relaxation: objective 5.600000e+01, 385 iterations, 0.02 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0   56.00000    0   22          -   56.00000      -     -    0s
+     0     0   56.00000    0  171          -   56.00000      -     -    0s
+     0     0   56.00000    0  165          -   56.00000      -     -    0s
+     0     0   56.00000    0   62          -   56.00000      -     -    0s
+     0     0   56.00000    0   60          -   56.00000      -     -    0s
+     0     0   56.00000    0   37          -   56.00000      -     -    0s
+     0     0   56.00000    0   59          -   56.00000      -     -    0s
+     0     0   56.00000    0   21          -   56.00000      -     -    0s
+     0     0   56.00000    0   18          -   56.00000      -     -    0s
+     0     2   56.00000    0   13          -   56.00000      -     -    0s
+H  582   155                      39.0000000   56.00000  43.6%  86.5    1s
+H  582   154                      40.0000000   56.00000  40.0%  86.5    1s
+H  609   152                      41.0000000   56.00000  36.6%  90.2    2s
+H  635   154                      42.0000000   56.00000  33.3%  96.1    2s
+H  689   155                      43.0000000   56.00000  30.2%   103    2s
+H  767   150                      44.0000000   56.00000  27.3%   105    2s
+H 1121   161                      45.0000000   56.00000  24.4%   124    4s
+H 1166   165                      46.0000000   56.00000  21.7%   124    4s
+  1176   159   56.00000   10  135   46.00000   56.00000  21.7%   124    5s
+  1955   162   55.05709   12   92   46.00000   56.00000  21.7%   138   10s
+
+Cutting planes:
+  Gomory: 3
+  Cover: 1279
+  Implied bound: 36
+  Clique: 123
+  MIR: 56
+  StrongCG: 17
+  GUB cover: 12
+  Inf proof: 8
+  Zero half: 13
+  RLT: 13
+  Relax-and-lift: 2
+  BQP: 2
+
+Explored 2424 nodes (313423 simplex iterations) in 11.60 seconds (11.97 work units)
+Thread count was 1 (of 8 available processors)
+
+Solution count 8: 46 45 44 ... 39
+
+Optimal solution found (tolerance 1.00e-03)
+Best objective 4.600000000000e+01, best bound 4.600000000000e+01, gap 0.0000%
