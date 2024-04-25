@@ -98,7 +98,6 @@ namespace Job_Rotation_Comparison
                     MIPGap = 1e-3
                 };
                 Model? model = null;
-
                 while (true)
                 {
                     foreach (var percentage in percentages)
@@ -138,19 +137,6 @@ namespace Job_Rotation_Comparison
                                                 string gurobiJsonOutputFileName = solutionFileName.Replace(".sol", "-GUROBI.json");
                                                 if (File.Exists(solutionFileName))
                                                 {
-                                                    /*
-                                                    model = CreateModelByType(modelType, env, numberOfPeriods, instance, maximumMeanCycleTime, constraintController) ??
-                                                        throw new Exception($"Error when creating model {modelType} for input {instance.FileName}, it will be ignored.");
-
-                                                    model.Update();
-                                                    model.Read(solutionFileName);
-                                                    env.TimeLimit = 10;
-                                                    model.Optimize();
-                                                    env.TimeLimit = 3600;
-
-                                                    if (!File.Exists(gurobiJsonOutputFileName))
-                                                        Writer.WriteJSON(gurobiJsonOutputFileName, model.GetJSONSolution());*/
-
                                                     throw new Exception($"Output named {output.FileName.Replace(".json", ".sol")} already exists. It's execution will be ignored.");
                                                 }
                                                 env.LogFile = Path.Join(gurobiLogDirectory, $"gurobi_log-{output.FileName}.log");

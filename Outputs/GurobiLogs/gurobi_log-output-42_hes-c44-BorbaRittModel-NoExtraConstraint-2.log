@@ -25,3 +25,84 @@ Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2)
 CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
 Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
 
+
+Gurobi 11.0.1 (win64) logging started Sat Apr  6 12:56:17 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-42_hes-c44-BorbaRittModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+
+Gurobi 11.0.1 (win64) logging started Sun Apr  7 02:27:19 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-42_hes-c44-BorbaRittModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+
+Gurobi 11.0.1 (win64) logging started Sun Apr  7 06:41:06 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-42_hes-c44-BorbaRittModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+WLS license 2390832 - registered to Bitka Analytics
+Optimize a model with 3488 rows, 611 columns and 10925 nonzeros
+Model fingerprint: 0x3c809167
+Variable types: 2 continuous, 609 integer (609 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+02]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 9e+01]
+  RHS range        [1e+00, 9e+01]
+Presolve removed 982 rows and 74 columns
+Presolve time: 0.03s
+Presolved: 2506 rows, 537 columns, 7872 nonzeros
+Variable types: 0 continuous, 537 integer (536 binary)
+
+Root relaxation: objective 5.500000e+01, 712 iterations, 0.03 seconds (0.03 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0   55.00000    0  116          -   55.00000      -     -    0s
+     0     0   55.00000    0  181          -   55.00000      -     -    0s
+     0     0   55.00000    0  180          -   55.00000      -     -    0s
+     0     0   55.00000    0  117          -   55.00000      -     -    0s
+     0     0   55.00000    0  117          -   55.00000      -     -    0s
+     0     0   55.00000    0  118          -   55.00000      -     -    0s
+     0     0   55.00000    0  118          -   55.00000      -     -    0s
+     0     0   55.00000    0  133          -   55.00000      -     -    0s
+     0     0   55.00000    0  132          -   55.00000      -     -    0s
+     0     2   55.00000    0  132          -   55.00000      -     -    0s
+*  363   164              39      45.0000000   55.00000  22.2%   108    2s
+H  394   171                      46.0000000   55.00000  19.6%   113    3s
+H  409   182                      47.0000000   55.00000  17.0%   110    3s
+H  497   194                      49.0000000   55.00000  12.2%   110    3s
+   741   277   54.50000    6  222   49.00000   55.00000  12.2%   121    5s
+H  914   259                      52.0000000   55.00000  5.77%   122    6s
+H  962   256                      53.0000000   55.00000  3.77%   133    8s
+  1094   232   55.00000   17  140   53.00000   55.00000  3.77%   143   10s
+
+Cutting planes:
+  Cover: 5
+  Clique: 6
+  MIR: 1
+  Flow cover: 4
+  Zero half: 2
+  RLT: 3
+  BQP: 2
+
+Explored 1199 nodes (179246 simplex iterations) in 11.08 seconds (13.87 work units)
+Thread count was 1 (of 8 available processors)
+
+Solution count 6: 53 52 49 ... 45
+
+Optimal solution found (tolerance 1.00e-03)
+Best objective 5.300000000000e+01, best bound 5.300000000000e+01, gap 0.0000%

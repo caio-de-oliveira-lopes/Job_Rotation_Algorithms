@@ -7,13 +7,31 @@
       "RelativeMoniker": "D:0:0:{D9E5CAE2-7F2B-4F6B-92B5-6FDC1A4FE580}|Job_Rotation_Comparison.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{084AA547-BC53-4603-BE20-3F7ACEFE4D94}|..\\Costa_\u0026_Miralles_2009\\Costa_and_Miralles_2009.csproj|c:\\projetos\\job_rotation_algorithms\\costa_\u0026_miralles_2009\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EE1A4582-7F10-4E7F-A6C1-AFF94BF2B370}|..\\Base\\Base.csproj|c:\\projetos\\job_rotation_algorithms\\base\\domain\\output.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Projetos\\ODProductionPlanSolver\\ODProductionPlan\\Utils\\EnumUtil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EE1A4582-7F10-4E7F-A6C1-AFF94BF2B370}|..\\Base\\Base.csproj|c:\\projetos\\job_rotation_algorithms\\base\\utils\\util.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{084AA547-BC53-4603-BE20-3F7ACEFE4D94}|..\\Costa_\u0026_Miralles_2009\\Costa_and_Miralles_2009.csproj|c:\\projetos\\job_rotation_algorithms\\costa_\u0026_miralles_2009\\costamirallesmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EE1A4582-7F10-4E7F-A6C1-AFF94BF2B370}|..\\Base\\Base.csproj|c:\\projetos\\job_rotation_algorithms\\base\\datamanagers\\reader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{EE1A4582-7F10-4E7F-A6C1-AFF94BF2B370}|..\\Base\\Base.csproj|c:\\projetos\\job_rotation_algorithms\\base\\datamanagers\\writer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EE1A4582-7F10-4E7F-A6C1-AFF94BF2B370}|..\\Base\\Base.csproj|c:\\projetos\\job_rotation_algorithms\\base\\domain\\logger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EE1A4582-7F10-4E7F-A6C1-AFF94BF2B370}|..\\Base\\Base.csproj|c:\\projetos\\job_rotation_algorithms\\base\\domain\\basefile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{084AA547-BC53-4603-BE20-3F7ACEFE4D94}|..\\Costa_\u0026_Miralles_2009\\Costa_and_Miralles_2009.csproj|c:\\projetos\\job_rotation_algorithms\\costa_\u0026_miralles_2009\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EE1A4582-7F10-4E7F-A6C1-AFF94BF2B370}|..\\Base\\Base.csproj|c:\\projetos\\job_rotation_algorithms\\base\\domain\\model.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -23,12 +41,6 @@
     },
     {
       "AbsoluteMoniker": "D:0:0:{CFF3329F-2ABB-416C-A265-04603CECA785}|..\\Moreira_Miralles_\u0026_Costa_2015\\Moreira_Miralles_and_Costa_2015.csproj|c:\\projetos\\job_rotation_algorithms\\moreira_miralles_\u0026_costa_2015\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EE1A4582-7F10-4E7F-A6C1-AFF94BF2B370}|..\\Base\\Base.csproj|c:\\projetos\\job_rotation_algorithms\\base\\domain\\basefile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{084AA547-BC53-4603-BE20-3F7ACEFE4D94}|..\\Costa_\u0026_Miralles_2009\\Costa_and_Miralles_2009.csproj|c:\\projetos\\job_rotation_algorithms\\costa_\u0026_miralles_2009\\costamirallesmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D9E5CAE2-7F2B-4F6B-92B5-6FDC1A4FE580}|Job_Rotation_Comparison.csproj|c:\\projetos\\job_rotation_algorithms\\job_rotation_comparison\\properties\\publishprofiles\\jobrotationcomparisonprofile.pubxml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
@@ -73,31 +85,142 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Writer.cs",
-              "DocumentMoniker": "C:\\Projetos\\Job_Rotation_Algorithms\\Base\\DataManagers\\Writer.cs",
-              "RelativeDocumentMoniker": "..\\Base\\DataManagers\\Writer.cs",
-              "ToolTip": "C:\\Projetos\\Job_Rotation_Algorithms\\Base\\DataManagers\\Writer.cs",
-              "RelativeToolTip": "..\\Base\\DataManagers\\Writer.cs",
-              "ViewState": "AQIAAAQAAAAAAAAAAADgvxAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-23T16:45:56.769Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Base.csproj",
-              "DocumentMoniker": "C:\\Projetos\\Job_Rotation_Algorithms\\Base\\Base.csproj",
-              "RelativeDocumentMoniker": "..\\Base\\Base.csproj",
-              "ToolTip": "C:\\Projetos\\Job_Rotation_Algorithms\\Base\\Base.csproj",
-              "RelativeToolTip": "..\\Base\\Base.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-03-11T19:54:33.543Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Output.cs",
+              "DocumentMoniker": "C:\\Projetos\\Job_Rotation_Algorithms\\Base\\Domain\\Output.cs",
+              "RelativeDocumentMoniker": "..\\Base\\Domain\\Output.cs",
+              "ToolTip": "C:\\Projetos\\Job_Rotation_Algorithms\\Base\\Domain\\Output.cs",
+              "RelativeToolTip": "..\\Base\\Domain\\Output.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-18T14:09:30.783Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EnumUtil.cs",
+              "DocumentMoniker": "C:\\Projetos\\ODProductionPlanSolver\\ODProductionPlan\\Utils\\EnumUtil.cs",
+              "RelativeDocumentMoniker": "..\\..\\ODProductionPlanSolver\\ODProductionPlan\\Utils\\EnumUtil.cs",
+              "ToolTip": "C:\\Projetos\\ODProductionPlanSolver\\ODProductionPlan\\Utils\\EnumUtil.cs",
+              "RelativeToolTip": "..\\..\\ODProductionPlanSolver\\ODProductionPlan\\Utils\\EnumUtil.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAAwwCwAAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-09T21:04:31.759Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Reader.cs",
+              "DocumentMoniker": "C:\\Projetos\\Job_Rotation_Algorithms\\Base\\DataManagers\\Reader.cs",
+              "RelativeDocumentMoniker": "..\\Base\\DataManagers\\Reader.cs",
+              "ToolTip": "C:\\Projetos\\Job_Rotation_Algorithms\\Base\\DataManagers\\Reader.cs",
+              "RelativeToolTip": "..\\Base\\DataManagers\\Reader.cs",
+              "ViewState": "AQIAADEAAAAAAAAAAAAQwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-09T13:11:08.898Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Logger.cs",
+              "DocumentMoniker": "C:\\Projetos\\Job_Rotation_Algorithms\\Base\\Domain\\Logger.cs",
+              "RelativeDocumentMoniker": "..\\Base\\Domain\\Logger.cs",
+              "ToolTip": "C:\\Projetos\\Job_Rotation_Algorithms\\Base\\Domain\\Logger.cs",
+              "RelativeToolTip": "..\\Base\\Domain\\Logger.cs",
+              "ViewState": "AQIAAC4AAAAAAAAAAAAwwAoAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-09T12:42:23.78Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Projetos\\Job_Rotation_Algorithms\\Job_Rotation_Comparison\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Projetos\\Job_Rotation_Algorithms\\Job_Rotation_Comparison\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAF4AAAAAAAAAAAAQwGoAAAA5AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-11T19:48:29.844Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Model.cs",
+              "DocumentMoniker": "C:\\Projetos\\Job_Rotation_Algorithms\\Base\\Domain\\Model.cs",
+              "RelativeDocumentMoniker": "..\\Base\\Domain\\Model.cs",
+              "ToolTip": "C:\\Projetos\\Job_Rotation_Algorithms\\Base\\Domain\\Model.cs",
+              "RelativeToolTip": "..\\Base\\Domain\\Model.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAQAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-12T12:36:01.948Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Job_Rotation_Comparison.csproj",
+              "DocumentMoniker": "C:\\Projetos\\Job_Rotation_Algorithms\\Job_Rotation_Comparison\\Job_Rotation_Comparison.csproj",
+              "RelativeDocumentMoniker": "Job_Rotation_Comparison.csproj",
+              "ToolTip": "C:\\Projetos\\Job_Rotation_Algorithms\\Job_Rotation_Comparison\\Job_Rotation_Comparison.csproj",
+              "RelativeToolTip": "Job_Rotation_Comparison.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-03-11T19:48:44.846Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Util.cs",
+              "DocumentMoniker": "C:\\Projetos\\Job_Rotation_Algorithms\\Base\\Utils\\Util.cs",
+              "RelativeDocumentMoniker": "..\\Base\\Utils\\Util.cs",
+              "ToolTip": "C:\\Projetos\\Job_Rotation_Algorithms\\Base\\Utils\\Util.cs",
+              "RelativeToolTip": "..\\Base\\Utils\\Util.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEoBAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-15T11:39:35.181Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "BaseFile.cs",
+              "DocumentMoniker": "C:\\Projetos\\Job_Rotation_Algorithms\\Base\\Domain\\BaseFile.cs",
+              "RelativeDocumentMoniker": "..\\Base\\Domain\\BaseFile.cs",
+              "ToolTip": "C:\\Projetos\\Job_Rotation_Algorithms\\Base\\Domain\\BaseFile.cs",
+              "RelativeToolTip": "..\\Base\\Domain\\BaseFile.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-12T12:35:59.924Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CostaMirallesModel.cs",
+              "DocumentMoniker": "C:\\Projetos\\Job_Rotation_Algorithms\\Costa_\u0026_Miralles_2009\\CostaMirallesModel.cs",
+              "RelativeDocumentMoniker": "..\\Costa_\u0026_Miralles_2009\\CostaMirallesModel.cs",
+              "ToolTip": "C:\\Projetos\\Job_Rotation_Algorithms\\Costa_\u0026_Miralles_2009\\CostaMirallesModel.cs",
+              "RelativeToolTip": "..\\Costa_\u0026_Miralles_2009\\CostaMirallesModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAANgAAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-12T16:37:01.494Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Projetos\\Job_Rotation_Algorithms\\Moreira_Miralles_\u0026_Costa_2015\\Program.cs",
+              "RelativeDocumentMoniker": "..\\Moreira_Miralles_\u0026_Costa_2015\\Program.cs",
+              "ToolTip": "C:\\Projetos\\Job_Rotation_Algorithms\\Moreira_Miralles_\u0026_Costa_2015\\Program.cs",
+              "RelativeToolTip": "..\\Moreira_Miralles_\u0026_Costa_2015\\Program.cs",
+              "ViewState": "AQIAAGEAAAAAAAAAAAAuwHIAAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-12T16:41:53.307Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Projetos\\Job_Rotation_Algorithms\\Costa_\u0026_Miralles_2009\\Program.cs",
               "RelativeDocumentMoniker": "..\\Costa_\u0026_Miralles_2009\\Program.cs",
@@ -110,67 +233,30 @@
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Projetos\\Job_Rotation_Algorithms\\Moreira_Miralles_\u0026_Costa_2015\\Program.cs",
-              "RelativeDocumentMoniker": "..\\Moreira_Miralles_\u0026_Costa_2015\\Program.cs",
-              "ToolTip": "C:\\Projetos\\Job_Rotation_Algorithms\\Moreira_Miralles_\u0026_Costa_2015\\Program.cs",
-              "RelativeToolTip": "..\\Moreira_Miralles_\u0026_Costa_2015\\Program.cs",
-              "ViewState": "AQIAAGEAAAAAAAAAAAAuwHIAAAA0AAAA",
+              "Title": "Writer.cs",
+              "DocumentMoniker": "C:\\Projetos\\Job_Rotation_Algorithms\\Base\\DataManagers\\Writer.cs",
+              "RelativeDocumentMoniker": "..\\Base\\DataManagers\\Writer.cs",
+              "ToolTip": "C:\\Projetos\\Job_Rotation_Algorithms\\Base\\DataManagers\\Writer.cs",
+              "RelativeToolTip": "..\\Base\\DataManagers\\Writer.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAAowC8AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-12T16:41:53.307Z"
+              "WhenOpened": "2024-03-23T16:45:56.769Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Projetos\\Job_Rotation_Algorithms\\Job_Rotation_Comparison\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Projetos\\Job_Rotation_Algorithms\\Job_Rotation_Comparison\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAJcAAAAAAAAAAAAQwJkAAAA0AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-11T19:48:29.844Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Model.cs",
-              "DocumentMoniker": "C:\\Projetos\\Job_Rotation_Algorithms\\Base\\Domain\\Model.cs",
-              "RelativeDocumentMoniker": "..\\Base\\Domain\\Model.cs",
-              "ToolTip": "C:\\Projetos\\Job_Rotation_Algorithms\\Base\\Domain\\Model.cs",
-              "RelativeToolTip": "..\\Base\\Domain\\Model.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAQAAAAfAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-12T12:36:01.948Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Job_Rotation_Comparison.csproj",
-              "DocumentMoniker": "C:\\Projetos\\Job_Rotation_Algorithms\\Job_Rotation_Comparison\\Job_Rotation_Comparison.csproj",
-              "RelativeDocumentMoniker": "Job_Rotation_Comparison.csproj",
-              "ToolTip": "C:\\Projetos\\Job_Rotation_Algorithms\\Job_Rotation_Comparison\\Job_Rotation_Comparison.csproj",
-              "RelativeToolTip": "Job_Rotation_Comparison.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAxAAAA",
+              "DocumentIndex": 17,
+              "Title": "Base.csproj",
+              "DocumentMoniker": "C:\\Projetos\\Job_Rotation_Algorithms\\Base\\Base.csproj",
+              "RelativeDocumentMoniker": "..\\Base\\Base.csproj",
+              "ToolTip": "C:\\Projetos\\Job_Rotation_Algorithms\\Base\\Base.csproj",
+              "RelativeToolTip": "..\\Base\\Base.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-03-11T19:48:44.846Z"
+              "WhenOpened": "2024-03-11T19:54:33.543Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Util.cs",
-              "DocumentMoniker": "C:\\Projetos\\Job_Rotation_Algorithms\\Base\\Utils\\Util.cs",
-              "RelativeDocumentMoniker": "..\\Base\\Utils\\Util.cs",
-              "ToolTip": "C:\\Projetos\\Job_Rotation_Algorithms\\Base\\Utils\\Util.cs",
-              "RelativeToolTip": "..\\Base\\Utils\\Util.cs",
-              "ViewState": "AQIAAA8BAAAAAAAAAAAAAEgBAAAKAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-15T11:39:35.181Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 16,
               "Title": "Borba_and_Ritt_2014.csproj",
               "DocumentMoniker": "C:\\Projetos\\Job_Rotation_Algorithms\\Borba_\u0026_Ritt_2014\\Borba_and_Ritt_2014.csproj",
               "RelativeDocumentMoniker": "..\\Borba_\u0026_Ritt_2014\\Borba_and_Ritt_2014.csproj",
@@ -182,7 +268,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 13,
               "Title": "JobRotationComparisonProfile.pubxml",
               "DocumentMoniker": "C:\\Projetos\\Job_Rotation_Algorithms\\Job_Rotation_Comparison\\Properties\\PublishProfiles\\JobRotationComparisonProfile.pubxml",
               "RelativeDocumentMoniker": "Properties\\PublishProfiles\\JobRotationComparisonProfile.pubxml",
@@ -194,7 +280,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 11,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Projetos\\Job_Rotation_Algorithms\\Borba_\u0026_Ritt_2014\\Program.cs",
               "RelativeDocumentMoniker": "..\\Borba_\u0026_Ritt_2014\\Program.cs",
@@ -206,31 +292,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "BaseFile.cs",
-              "DocumentMoniker": "C:\\Projetos\\Job_Rotation_Algorithms\\Base\\Domain\\BaseFile.cs",
-              "RelativeDocumentMoniker": "..\\Base\\Domain\\BaseFile.cs",
-              "ToolTip": "C:\\Projetos\\Job_Rotation_Algorithms\\Base\\Domain\\BaseFile.cs",
-              "RelativeToolTip": "..\\Base\\Domain\\BaseFile.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAdAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-12T12:35:59.924Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "CostaMirallesModel.cs",
-              "DocumentMoniker": "C:\\Projetos\\Job_Rotation_Algorithms\\Costa_\u0026_Miralles_2009\\CostaMirallesModel.cs",
-              "RelativeDocumentMoniker": "..\\Costa_\u0026_Miralles_2009\\CostaMirallesModel.cs",
-              "ToolTip": "C:\\Projetos\\Job_Rotation_Algorithms\\Costa_\u0026_Miralles_2009\\CostaMirallesModel.cs",
-              "RelativeToolTip": "..\\Costa_\u0026_Miralles_2009\\CostaMirallesModel.cs",
-              "ViewState": "AQIAAL8AAAAAAAAAAAASwNgAAAAZAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-12T16:37:01.494Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 18,
               "Title": "FolderProfile.pubxml",
               "DocumentMoniker": "C:\\Projetos\\Job_Rotation_Algorithms\\Base\\Properties\\PublishProfiles\\FolderProfile.pubxml",
               "RelativeDocumentMoniker": "..\\Base\\Properties\\PublishProfiles\\FolderProfile.pubxml",
@@ -242,7 +304,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 15,
               "Title": "Costa_and_Miralles_2009.csproj",
               "DocumentMoniker": "C:\\Projetos\\Job_Rotation_Algorithms\\Costa_\u0026_Miralles_2009\\Costa_and_Miralles_2009.csproj",
               "RelativeDocumentMoniker": "..\\Costa_\u0026_Miralles_2009\\Costa_and_Miralles_2009.csproj",
@@ -254,7 +316,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 19,
               "Title": "Borba_and_Ritt_2014",
               "DocumentMoniker": "C:\\Projetos\\Job_Rotation_Algorithms\\Borba_\u0026_Ritt_2014\\Borba_and_Ritt_2014.csproj",
               "RelativeDocumentMoniker": "..\\Borba_\u0026_Ritt_2014\\Borba_and_Ritt_2014.csproj",
@@ -265,7 +327,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 20,
               "Title": "Job_Rotation_Comparison",
               "DocumentMoniker": "C:\\Projetos\\Job_Rotation_Algorithms\\Job_Rotation_Comparison\\Job_Rotation_Comparison.csproj",
               "RelativeDocumentMoniker": "Job_Rotation_Comparison.csproj",
