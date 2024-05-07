@@ -151,3 +151,60 @@ Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2)
 CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
 Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
 
+
+Gurobi 11.0.1 (win64) logging started Thu Apr 25 09:36:20 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-67_ros-c21-BorbaRittModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+WLS license 901038 - registered to Bitka Analytics
+Optimize a model with 2071 rows, 470 columns and 6552 nonzeros
+Model fingerprint: 0x97ac174d
+Variable types: 2 continuous, 468 integer (468 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 3e+01]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 4e+01]
+  RHS range        [1e+00, 4e+01]
+Presolve removed 1 rows and 1 columns
+Presolve time: 0.01s
+Presolved: 2070 rows, 469 columns, 6550 nonzeros
+Variable types: 0 continuous, 469 integer (468 binary)
+
+Root relaxation: objective 5.000000e+01, 472 iterations, 0.01 seconds (0.01 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0   50.00000    0  137          -   50.00000      -     -    0s
+     0     0   50.00000    0  132          -   50.00000      -     -    0s
+     0     0   50.00000    0  100          -   50.00000      -     -    0s
+     0     0   50.00000    0  102          -   50.00000      -     -    0s
+     0     0   50.00000    0   99          -   50.00000      -     -    0s
+     0     0   50.00000    0   95          -   50.00000      -     -    0s
+     0     0   50.00000    0  100          -   50.00000      -     -    0s
+     0     0   50.00000    0  116          -   50.00000      -     -    0s
+     0     0   50.00000    0  104          -   50.00000      -     -    0s
+     0     0   50.00000    0  124          -   50.00000      -     -    0s
+     0     0   50.00000    0  127          -   50.00000      -     -    0s
+     0     0   50.00000    0  118          -   50.00000      -     -    0s
+     0     0   50.00000    0  118          -   50.00000      -     -    0s
+     0     2   50.00000    0  118          -   50.00000      -     -    0s
+  1022   402 infeasible   43               -   50.00000      -  21.0    5s
+  2160   187   50.00000   35  105          -   50.00000      -  60.6   10s
+  3238   303 infeasible   44               -   50.00000      -  75.6   15s
+  4179   392   50.00000   33  141          -   50.00000      -  83.2   20s
+H 4861   520                      47.0000000   50.00000  6.38%  85.7   22s
+* 4867   473              44      49.0000000   50.00000  2.04%  85.6   22s
+H 4870   451                      50.0000000   50.00000  0.00%  85.6   22s
+
+Explored 4870 nodes (461393 simplex iterations) in 23.00 seconds (20.43 work units)
+Thread count was 1 (of 8 available processors)
+
+Solution count 3: 50 49 47 
+
+Optimal solution found (tolerance 1.00e-03)
+Best objective 5.000000000000e+01, best bound 5.000000000000e+01, gap 0.0000%

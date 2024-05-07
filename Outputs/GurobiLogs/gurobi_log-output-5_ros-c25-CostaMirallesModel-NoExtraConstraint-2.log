@@ -151,3 +151,83 @@ Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2)
 CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
 Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
 
+
+Gurobi 11.0.1 (win64) logging started Fri Apr 26 07:42:04 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-5_ros-c25-CostaMirallesModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+
+Gurobi 11.0.1 (win64) logging started Sat Apr 27 04:33:28 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-5_ros-c25-CostaMirallesModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+
+Gurobi 11.0.1 (win64) logging started Sat Apr 27 14:51:26 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-5_ros-c25-CostaMirallesModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+
+Gurobi 11.0.1 (win64) logging started Wed May  1 17:51:26 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-5_ros-c25-CostaMirallesModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+WLS license 901038 - registered to Bitka Analytics
+Optimize a model with 423 rows, 862 columns and 6722 nonzeros
+Model fingerprint: 0x1af3bd46
+Variable types: 2 continuous, 860 integer (860 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 3e+01]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 5e+01]
+  RHS range        [1e+00, 5e+01]
+Presolve removed 33 rows and 101 columns
+Presolve time: 0.05s
+Presolved: 390 rows, 761 columns, 5642 nonzeros
+Variable types: 0 continuous, 761 integer (760 binary)
+
+Root relaxation: objective 5.000000e+01, 474 iterations, 0.02 seconds (0.01 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0   50.00000    0    5          -   50.00000      -     -    0s
+H    0     0                      48.0000000   50.00000  4.17%     -    0s
+     0     0   50.00000    0   45   48.00000   50.00000  4.17%     -    0s
+     0     0   50.00000    0   41   48.00000   50.00000  4.17%     -    0s
+     0     0   50.00000    0   12   48.00000   50.00000  4.17%     -    0s
+     0     0   50.00000    0   82   48.00000   50.00000  4.17%     -    0s
+     0     0   50.00000    0   35   48.00000   50.00000  4.17%     -    0s
+     0     0   50.00000    0   35   48.00000   50.00000  4.17%     -    0s
+H    0     0                      50.0000000   50.00000  0.00%     -    0s
+     0     0   50.00000    0   35   50.00000   50.00000  0.00%     -    0s
+
+Cutting planes:
+  Cover: 13
+  Clique: 47
+  MIR: 9
+  GUB cover: 1
+  RLT: 2
+
+Explored 1 nodes (3530 simplex iterations) in 0.23 seconds (0.17 work units)
+Thread count was 1 (of 8 available processors)
+
+Solution count 2: 50 48 
+
+Optimal solution found (tolerance 1.00e-03)
+Best objective 5.000000000000e+01, best bound 5.000000000000e+01, gap 0.0000%

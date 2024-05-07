@@ -115,3 +115,116 @@ Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2)
 CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
 Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
 
+
+Gurobi 11.0.1 (win64) logging started Fri Apr 26 07:41:09 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-31_wee-c70-BorbaRittModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+
+Gurobi 11.0.1 (win64) logging started Sat Apr 27 04:32:40 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-31_wee-c70-BorbaRittModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+
+Gurobi 11.0.1 (win64) logging started Sat Apr 27 14:50:38 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-31_wee-c70-BorbaRittModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+
+Gurobi 11.0.1 (win64) logging started Mon Apr 29 18:02:20 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-31_wee-c70-BorbaRittModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+WLS license 901038 - registered to Bitka Analytics
+Optimize a model with 17042 rows, 2373 columns and 53389 nonzeros
+Model fingerprint: 0xa69478c2
+Variable types: 2 continuous, 2371 integer (2371 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 5e+01]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 1e+02]
+  RHS range        [1e+00, 1e+02]
+Presolve removed 1 rows and 1 columns
+Presolve time: 0.07s
+Presolved: 17041 rows, 2372 columns, 53387 nonzeros
+Variable types: 0 continuous, 2372 integer (2371 binary)
+Root relaxation presolved: 17041 rows, 2372 columns, 53387 nonzeros
+
+
+Root relaxation: objective 1.500000e+02, 4109 iterations, 0.52 seconds (0.67 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0  150.00000    0  330          -  150.00000      -     -    1s
+     0     0  150.00000    0  424          -  150.00000      -     -    1s
+     0     0  150.00000    0  393          -  150.00000      -     -    1s
+     0     0  150.00000    0  278          -  150.00000      -     -    3s
+     0     0  150.00000    0  268          -  150.00000      -     -    3s
+     0     0  150.00000    0  367          -  150.00000      -     -    4s
+     0     0  150.00000    0  324          -  150.00000      -     -    4s
+     0     0  150.00000    0  259          -  150.00000      -     -    5s
+     0     0  150.00000    0  269          -  150.00000      -     -    5s
+     0     0  150.00000    0  361          -  150.00000      -     -    6s
+     0     0  150.00000    0  393          -  150.00000      -     -    7s
+     0     0  150.00000    0  332          -  150.00000      -     -    8s
+     0     0  150.00000    0  407          -  150.00000      -     -    8s
+     0     0  150.00000    0  408          -  150.00000      -     -    9s
+     0     0  150.00000    0  267          -  150.00000      -     -   10s
+     0     2  150.00000    0  267          -  150.00000      -     -   12s
+    88    87  150.00000   58  286          -  150.00000      -   141   15s
+   294   231  150.00000   28  280          -  150.00000      -   153   20s
+   452   355  150.00000   65  251          -  150.00000      -   180   25s
+   584   438  150.00000   57  342          -  150.00000      -   184   30s
+   622   454  150.00000   44  257          -  150.00000      -   182   37s
+   624   455  150.00000   44  284          -  150.00000      -   182   40s
+   631   460  150.00000   32  408          -  150.00000      -   180   45s
+   636   463  150.00000   58  284          -  150.00000      -   178   50s
+   640   466  150.00000   58  135          -  150.00000      -   177   55s
+   644   469  150.00000   17  219          -  150.00000      -   176   60s
+H  666   459                     142.0000000  150.00000  5.63%   155   64s
+H  666   436                     145.0000000  150.00000  3.45%   155   64s
+H  666   414                     146.0000000  150.00000  2.74%   155   64s
+   688   429 infeasible   31       146.00000  150.00000  2.74%   158   65s
+H  692   410                     147.0000000  150.00000  2.04%   158   65s
+H  718   408                     148.0000000  150.00000  1.35%   156   66s
+H  720   390                     149.0000000  150.00000  0.67%   156   66s
+   727   396  150.00000   26   86  149.00000  150.00000  0.67%   154   70s
+   734   401  150.00000   49  256  149.00000  150.00000  0.67%   153   75s
+   739   404  150.00000   64   89  149.00000  150.00000  0.67%   152   80s
+   764   423  150.00000   32  214  149.00000  150.00000  0.67%   233   85s
+H  821   365                     150.0000000  150.00000  0.00%   239   89s
+
+Cutting planes:
+  Gomory: 2
+  Cover: 7
+  MIR: 2
+  StrongCG: 2
+  Flow cover: 13
+  Zero half: 7
+  RLT: 36
+  BQP: 63
+
+Explored 822 nodes (359760 simplex iterations) in 89.40 seconds (117.06 work units)
+Thread count was 1 (of 8 available processors)
+
+Solution count 7: 150 149 148 ... 142
+
+Optimal solution found (tolerance 1.00e-03)
+Best objective 1.500000000000e+02, best bound 1.500000000000e+02, gap 0.0000%

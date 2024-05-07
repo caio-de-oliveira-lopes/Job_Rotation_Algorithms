@@ -151,3 +151,87 @@ Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2)
 CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
 Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
 
+
+Gurobi 11.0.1 (win64) logging started Fri Apr 26 07:41:02 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-27_ros-c31-CostaMirallesModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+
+Gurobi 11.0.1 (win64) logging started Sat Apr 27 04:32:33 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-27_ros-c31-CostaMirallesModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+
+Gurobi 11.0.1 (win64) logging started Sat Apr 27 14:50:32 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-27_ros-c31-CostaMirallesModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+
+Gurobi 11.0.1 (win64) logging started Mon Apr 29 08:18:16 2024
+
+Set parameter LogFile to value "C:\Projetos\Job_Rotation_Algorithms\Outputs\GurobiLogs\gurobi_log-output-27_ros-c31-CostaMirallesModel-NoExtraConstraint-2.log"
+Gurobi Optimizer version 11.0.1 build v11.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 4 physical cores, 8 logical processors, using up to 1 threads
+
+WLS license 901038 - registered to Bitka Analytics
+Optimize a model with 424 rows, 871 columns and 6775 nonzeros
+Model fingerprint: 0x6f70f785
+Variable types: 2 continuous, 869 integer (869 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 3e+01]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [1e+00, 6e+01]
+  RHS range        [1e+00, 6e+01]
+Presolve removed 41 rows and 113 columns
+Presolve time: 0.08s
+Presolved: 383 rows, 758 columns, 5519 nonzeros
+Variable types: 0 continuous, 758 integer (757 binary)
+
+Root relaxation: objective 5.000000e+01, 344 iterations, 0.01 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0   50.00000    0    6          -   50.00000      -     -    0s
+H    0     0                      39.0000000   50.00000  28.2%     -    0s
+H    0     0                      45.0000000   50.00000  11.1%     -    0s
+H    0     0                      46.0000000   50.00000  8.70%     -    0s
+     0     0   50.00000    0  130   46.00000   50.00000  8.70%     -    0s
+     0     0   50.00000    0  134   46.00000   50.00000  8.70%     -    0s
+     0     0   50.00000    0   36   46.00000   50.00000  8.70%     -    0s
+H    0     0                      47.0000000   50.00000  6.38%     -    0s
+     0     0   50.00000    0   44   47.00000   50.00000  6.38%     -    0s
+     0     0   50.00000    0   45   47.00000   50.00000  6.38%     -    0s
+     0     0   50.00000    0   13   47.00000   50.00000  6.38%     -    0s
+     0     2   50.00000    0   12   47.00000   50.00000  6.38%     -    0s
+H   27     1                      50.0000000   50.00000  0.00%  29.5    0s
+
+Cutting planes:
+  Cover: 8
+  Clique: 21
+  MIR: 7
+  GUB cover: 3
+  Zero half: 6
+  RLT: 3
+
+Explored 28 nodes (5860 simplex iterations) in 0.54 seconds (0.24 work units)
+Thread count was 1 (of 8 available processors)
+
+Solution count 5: 50 47 46 ... 39
+
+Optimal solution found (tolerance 1.00e-03)
+Best objective 5.000000000000e+01, best bound 5.000000000000e+01, gap 0.0000%
