@@ -1953,7 +1953,7 @@ Instance | Model | Periods | Maximum Mean Cycle Time | Workers | Tasks | OF
 </p>
 </details>
 
-<details><summary>Wee-mag</summary>
+<details><summary>Wee-Mag</summary>
 <p>
 
 Instance | Model | Periods | Maximum Mean Cycle Time | Workers | Tasks | OF
